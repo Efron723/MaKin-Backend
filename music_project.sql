@@ -7,6 +7,10 @@
 -- 伺服器版本： 8.0.36
 -- PHP 版本： 8.1.25
 
+-- drop database music_project;
+-- create database music_project;
+--  music_project;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -24,81 +28,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `aclass`
---
-
-CREATE TABLE `aclass` (
-  `id` int NOT NULL,
-  `class` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 傾印資料表的資料 `aclass`
---
-
-INSERT INTO `aclass` (`id`, `class`) VALUES
-(1, 'concert'),
-(2, 'music festival');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `activity`
---
-
-CREATE TABLE `activity` (
-  `actid` int NOT NULL,
-  `class` varchar(100) DEFAULT NULL,
-  `actname` varchar(255) NOT NULL,
-  `actdate` date DEFAULT NULL,
-  `acttime` time DEFAULT NULL,
-  `location` varchar(255) NOT NULL,
-  `area` varchar(255) NOT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `descriptions` varchar(2000) DEFAULT NULL,
-  `organizer` varchar(255) DEFAULT NULL,
-  `artist_id` int DEFAULT NULL,
-  `picture` varchar(255) DEFAULT NULL,
-  `cover` varchar(255) DEFAULT NULL,
-  `picinfrontend` varchar(255) NOT NULL,
-  `mingpic` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 傾印資料表的資料 `activity`
---
-
-INSERT INTO `activity` (`actid`, `class`, `actname`, `actdate`, `acttime`, `location`, `area`, `address`, `descriptions`, `organizer`, `artist_id`, `picture`, `cover`, `picinfrontend`, `mingpic`) VALUES
-(1, 'concert', '一生到底', '2024-08-17', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '一生到底 One Life,One Shot人生像場一鏡到底的電影，時間不曾為誰停下，無法倒轉重來、也無法按下暫停。Let’s keep rolling!不斷前進的過程中，最珍貴的便是每次聚在一起就充滿能量，很多事情一時沒有答案，至少、你有滅火器的音樂可以作伴。人生keep rolling的BGM，讓滅火器陪你，一生到底。', '火氣音樂', 16, 'https://i.postimg.cc/v8Vr7zcZ/temp-Image-GXQJZ9.avif', 'https://i.postimg.cc/tTVx5qRM/temp-Image-GTMpop.avif', '1.avif', 'Banner01.jpg'),
-(2, 'concert', 'The Yussef Live', '2024-08-03', '20:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '南倫敦出生的 Yussef Dayes，合成一系列來自南半球、西非到加勒比海和南美洲等令人眼花繚亂的聲音和節奏，他的表演融合了精湛的技術、強烈的激情和原始的情感，更以突破界限的音樂風景吸引全世界的樂迷觀眾，在倫敦當代爵士樂壇中占有重要地位。\nYussef Dayes 4歲就開始了他的音樂生涯，10歲從師 Billy Cobham（爵士巨人 Miles Davis 鼓手、Mahavishnu Orchestra 成員），和兄弟及朋友們組成樂團 United Vibrations，2011年發行《Galaxies Not Ghettos》，當時的 Yussef Dayes 只有16歲。儘管後來以 Kamaal Williams 組成的 Yussef Kamaal、以及和 Tom Misch 合作專輯《What Kinda Music》聲名大噪，Yussef Dayes 在2023年發行個人首張專輯《Black Classical Music》，融合爵士樂、雷鬼與嘻哈，邀來 Masego、Chronixx、Jamiliah Barry、Tom Misch 等人合作，獲得全英音樂獎（BRIT Awards）「最佳新人」「最佳另類／搖滾藝人」兩項年度提名。', 'Young Team Productions', 14, 'https://i.postimg.cc/XvqFrKR3/temp-Image-DYHcq-Q.avif', 'https://i.postimg.cc/nzsvPK2T/temp-Imagenl-Bj-Y0.avif', '2.avif', 'Banner02.jpg'),
-(3, 'concert', '10CM 2024 ONLY', '2024-09-06', '19:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '10CM在今年1月推出單曲’5.5 소년(少年)’，而4月25日發布全新單曲 5.6 ’너랑 밤새고 싶어(Late Night Walk)‘緩慢而甜蜜的唱出了戀情萌芽的羞澀與喜悅，近期甫創下收視紀錄的韓劇《淚之女王》中，10CM的聲音也讓電視劇大放異彩，過去半年內不斷推出作品的10CM將從7月開始於亞洲各國帶來精彩的演出。', 'LA RUE 文創設計', 12, 'https://i.postimg.cc/Hs0bRk0G/temp-Imagevb-O7v1.avif', 'https://i.postimg.cc/mkY1vmH3/temp-Image-DW5gw-H.avif', '3.avif', 'Banner03.jpg'),
-(4, 'concert', 'aespa演唱會', '2024-10-22', '19:00:00', '林口體育館', '北部', '桃園市龜山區文化一路250號', 'aespa出道四年首次正式來台北開專場演唱會，將於8月10號在林口體育館舉行。自從今年一月在台北舉行過專輯簽售會和受邀參加科技公司商演後，台北的MY對aespa來台北舉辦演唱會的呼聲越發高漲，在之後無預警公布的世界巡演城市名單中台北赫然在列，讓台北粉絲又驚又喜，希望演唱會快點到來。\naespa由四名成員Karina、Giselle、Winter、Ningning組成，自出道以來就以獨特的世界觀、前衛的團體概念，以及超強的舞台魅力，收穫眾多粉絲的心。她們在Youtube上每首MV的最低觀看次數都超過1億，是當代超人氣女團。\naespa在時尚方面也非常出色，瑞士奢華珠寶Chopard、義大利Versace、美國Ralph Lauren等世界知名品牌也選擇aespa團體及其成員作為該品牌的宣傳大使和代言人。\n這次台北場的演出日剛好是七夕情人節，在這個充滿粉色泡泡的日子裡，不知道成員們會給台北粉絲們帶來什麼樣的驚喜呢! 台北的MY們，八月一定要來現場和aespa一起創造幸福的回憶！', 'iMe TW', 4, 'https://i.postimg.cc/GtSrQnS9/Banner13.jpg', 'https://i.postimg.cc/257KfRN6/Cover13.jpg', '4.jpg', 'Banner04.jpg'),
-(5, 'concert', 'Energy 一觸即發', '2024-08-04', '19:30:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '招牌發電｜經典回憶殺唱個夠\n帶你走進音樂回憶殺，首首都是陪伴人生的迷人觸景，不只「放手」、「多愛我一天」、「某年某月某一天」、「Come On」、「無懈可擊」，承諾過「永遠不說再見」的Energy，現在實現諾言，再度因你而聚，為你而跳。\n全面放電｜天王天后御用總監 打造最大夜店 \n潮流舞曲製造機音樂總監 Starr Chen 陳星翰，全新改編經典歌曲，將音樂能量觸電、發電、放電，音浪電力無限激盪，震撼台北小巨蛋！\n天王天后御用舞蹈總監林大鈞，炸裂編舞跨年代舞風大精華！舞曲全場炸翻最大夜店！\n零距離觸電｜天地對立光柱 巨型地面Led延伸舞台\n演唱會製作魔法團隊必應創造，訂製天地對立移動巨型異變光柱、巨型地面Led延伸舞台，近距離與你接觸！重磅打造超升級超大型的動感Party！\n記憶充電｜橫跨街舞世代挑動舞感神經 \n睽違22年重返當年，結合跨世代舞曲大招，當累積的能量重新匯集，走過分合 Energy 再衝一次，一起共寫屬於我們的新傳奇！', '用心音樂', 13, 'https://i.postimg.cc/8PghZ66B/temp-Imagep-QE9yu.avif', 'https://i.postimg.cc/V6QjpXjC/energy.jpg', '5.jpg', 'Banner05.jpg'),
-(6, 'concert', 'Travis World Tour', '2024-09-03', '20:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', 'Travis Japan於2012年由麥可傑克森的編舞師Travis Payne所舉辦的徵選會中選出的成員所組成，是一支擁有強大舞蹈、表演實力的七人團體。\nTravis Japan曾參與舞台劇《虎者-NINJAPAN-》演出並擔任重要角色。2020年於可容納一萬七千人的橫濱體育場連續舉辦三場演出，門票全數售罄，2021年即在日本12個城市展開全國巡演《IMAGE NATION》。\n2022年3月，成員們為了精進自身能力，前往美國洛杉磯留學，留學期間參加了世界最大規模的舞蹈比賽「World of Dance」，以及美國NBC播出的指標性選秀節目「美國達人秀」，展現出他們精湛的舞蹈技巧，也成為了他們出道的契機。備受高度期待的首支主打單曲《JUST DANCE!》MV不但於YouTube觀看次數衝破千萬，也是J-POP史上首位以出道曲強勢登上告示牌美國除外全球單曲榜第五名的團體，此曲MV在YouTube觀看次數已突破千萬次。\n以首張專輯《Road to A》為題，不僅已在日本完成全國巡迴演唱會，吸引約31萬人參與，如今更宣布將開啟首次世界巡迴演唱會《Travis Japan World Tour 2024 Road to A》，要向世界展現他們最精彩、吸睛的舞蹈魅力！', '大鴻藝術BIG ART', 15, 'https://i.postimg.cc/tJRCk5qv/Banner01.jpg', 'https://i.postimg.cc/RVq5QF5T/Cover01.jpg', '6.jpg', 'Banner06.jpg'),
-(7, 'concert', 'BTOB FAN-CON', '2024-09-28', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '等了近六年！韓流三代團BTOB徐恩光、李旼赫、任炫植、PENIEL宣布6/29來台！\n很會唱、很會跳還很放閃！BTOB 終於要來啦！\n距離上次2018/9/8來台舉辦「BTOB TIME -THIS IS US」演唱會後，Melody（官粉名）等了近六年，終於要在6/29（六）見到韓流人氣實力三代團BTOB的四帥成員徐恩光、李旼赫、任炫植、PENIEL於TICC台北國際會議中心舉辦「2024 BTOB FAN-CON [OUR DREAM] in TAIPEI」！', '火氣音樂', 7, 'https://i.postimg.cc/j20J3pLd/temp-Imagel-FGn-Vc.avif', 'https://i.postimg.cc/G2ZkwBSR/temp-Imageiixi-F0.avif', '7.avif', 'Banner07.jpeg'),
-(8, 'concert', 'Starry Sky', '2024-09-30', '18:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '是勞模們迷茫徬徨的職涯課題\n是小男孩拒絕世故的搖滾初心', 'Young Team Productions', 8, 'https://i.postimg.cc/9Frcfzr9/Banner14.jpg', 'https://i.postimg.cc/k4MhJ17y/Cover14.jpg', '8.jpg', 'Banner08.jpg'),
-(9, 'concert', '建宮蓋廟', '2024-08-15', '19:30:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '宮廟\n不僅是多重領域大門，也是意識流的集合中心；\n宮廟\n不僅建造在地球上，也建造在太陽系八大行星衛星裡。\n令人驚奇的是\n太陽系邊界守門行星冥王星本身就是一座漂浮的宮廟行星。\n為什麼太陽系裏遍佈宮廟？\n是古地球人得到神仙的旨意、神仙的法力，而建宮蓋廟於整個太陽系？\n還是太陽系的古生命對於信仰有共識？\n我們看到的不只是過去，而是未來。\n2154年9大行星及衛星出現鬧鬼附身現象\n2159年正式進入「交由撒旦統治太陽系1000年」。\n3206年進入土星環發現多座破損宮廟隕石漂流在環中\n3264年發現冥王星是一座巨大的漂流宮廟\n3278年太陽系血肉宮廟網絡完成，血肉Boyz持續在宇宙中殺翻現場！', 'LA RUE 文創設計', 17, 'https://i.postimg.cc/CLWYD3d9/temp-Imagea-Dk-U5o.avif', 'https://i.postimg.cc/P52YfVF2/temp-Image9-Blyq-T.avif', '9.avif', 'Banner09.jpg'),
-(10, 'festival', '霓虹綠洲音樂祭', '2024-12-25', '12:00:00', '文山農場', '北部', '桃園市龜山區文化一路250號', '本屆活動除了再度邀請台灣、日本、韓國、泰國等地的音樂人，更邀請到來自中國石家莊的搖滾傳奇萬能青年旅店、紐西蘭的蒙面歌手 JonathanBree、香港天團 RubberBand，以及前陣子於社群引起熱烈關注的金氏世界紀錄年紀最小的小學生DJ RINOKA，吸引了許多親子、寵物家庭族群一同參與本屆活動。此外，霓虹綠洲音樂祭還將新增主打嘻哈、新聲的舞台與「前夜祭」擴大舉辦，透過結合音樂祭、露營、市集，為北部都會區帶來冬日弛放音樂盛事！', 'iMe TW', 10, 'https://i.postimg.cc/8ky1DLPD/Banner12.jpg', 'https://i.postimg.cc/KY2HVcVw/Cover12.jpg', '10.jpg', 'Banner10.jpg'),
-(11, 'festival', '雨山祭', '2024-09-24', '11:00:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '・2024年春假出遊首選音樂祭盛事\n・連續三年完售，台灣大型指標性音樂祭之一\n・台中海線小鎮漫遊，吃喝玩樂應有盡有\n・五周年擴大舉行，九大區域等你來解鎖\n・超過六國演出藝人即將來台獻技\n生活的紛擾及懊悔就留在那裡吧！一起邁向未知的新方向，大步踏出步伐，每一步都會有新風景的誕生，如同主視覺想傳達給每個朋友，跨過「浮現大門」後，回歸最純粹的模樣，化身為能代表你自己的角色，讓我們一起登陸小鎮的慶典吧！\n浮現祭五周年，再解鎖兩大場域，走進常民生活場景中，以及與海線當地有更多連結。未來，我們也將持續跨出海外，寫下更多新故事！如果你也想加入這段旅程，明年春天，我們相約老地方——台中清水，一個屬於我們冒險的起點。', '用心音樂', 9, 'https://i.postimg.cc/3NwYmx1P/Banner11.jpg', 'https://i.postimg.cc/28gJQ7xz/Cover11.jpg', '11.jpg', 'Banner11.jpg'),
-(12, 'festival', '大港開唱', '2024-11-09', '11:00:00', '駁二藝術特區', '南部', '新北市新莊區新北大道四段3號8樓', '《大港開唱》（Megaport Festival），創立於2006年，由台北《野台開唱》（Formoz Festival：1995～2013）主辦團隊，在高雄創立。一南一北的兩大型音樂祭品牌，是台灣如今百花齊放音樂祭市場的先趨。即將於今年邁入第十五屆的大港開唱，於每年三月底舉辦，也是目前台灣最具指標性的大型戶外音樂祭活動。\n大港位於高雄港邊，獨特的海港地景和人文風情，常勾起人生中各種酸甜苦辣的回憶。也因如此，大港總是邀請有著豐富人生歷程的知名藝人及業界前輩演出，也會與新一代的樂團或藝人一起合作演出，交融出世代之間的化學效應，往往成為當年度為人津津樂道的經典現場，包括《黃金夜總會》的賀一航、《古惑仔》裡的大飛哥-黃秋生，永駐在人們青春回憶中的日本偶像酒井法子，再到唱出《心事誰人知》的沈文程和演出《花甲男孩》的三金得主蔡振南。除此之外，唱著《少年吔，安啦！》的伍佰以及後來變成姐姐的謝金燕，都曾是大港舞台的主角之一。', '大鴻藝術BIG ART', 10, 'https://i.postimg.cc/Zqrbhg0D/Banner07.jpg', 'https://i.postimg.cc/C51tNvtK/Cover07.jpg', '12.jpg', 'Banner12.jpg'),
-(13, 'festival', '火球祭', '2024-08-31', '11:00:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '地球人請注意\n重返愛的主場，火球祭正式回歸！\n距離上次火球祭\n已經過了 1,344 天\n但！有些記憶不管過多久還是難忘\n還記得播放著搖滾樂的旋轉木馬上，她的笑容讓我暈到現在\n人生中第一次踏上紅土、在音樂聲中滾草皮\n時不時被感動到哭得像個傻瓜、下一秒又笑得像個笨蛋\n在雨中熱舞、在太陽下的草皮曬乾自己\n直接拿著感應手環、買個外帶坐到看台區爽吃爽喝爽聽團❤\n48 小時裡不間斷的快樂\n現在回想起來都會笑，太爽了吧？有夠夢幻\n準備好重返我們的搖滾遊樂園嗎？', '火氣音樂', 1, 'https://i.postimg.cc/Nfzf8mWb/Banner03.jpg', 'https://i.postimg.cc/QMG23JB6/Cover03.jpg', '13.jpg', 'Banner13.jpg'),
-(14, 'festival', '赤聲躁動音樂祭', '2024-10-13', '11:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '大膽飛天｜不純的純愛｜Y2K大爆炸\n「把糖果穿在身上、大聲唱歌，和冰友跳著最in的舞步並肩搖擺！」\n千禧年代的自由及美好令人無限懷念，\n浪漫五月，跟著赤聲戰隊來去Y2K的世界，\n一起大膽追愛，在浪漫大宇宙中自由飛翔！！', 'Young Team Productions', 2, 'https://i.postimg.cc/k4qnMcbM/Banner10.jpg', 'https://i.postimg.cc/jSN1Zn8y/Cover10.jpg', '14.jpg', 'Banner14.jpg'),
-(15, 'festival', '台秋祭', '2024-08-31', '11:00:00', '驛鐵道文化園區', '中部', '新北市新莊區新北大道四段3號8樓', '台中，\n是一個充滿熱情的所在，\n一個從北到南都得路過的所在，\n在這個交會點，\n無論是快樂、寂寞還是難過，我們都曾一起度過，\n就在「台秋祭」這個地方。\n說的沒錯，\n彼此都是生命中的過客，\n那既然你我都是旅客，\n就一起感受現場的一切，\n像是一種洗禮，一種契機，\n也會是一種轉運。\n感謝過去兩年的支持，\n歡迎來到，台秋轉運站。', 'LA RUE 文創設計', 3, 'https://i.postimg.cc/ZKR5yVDC/Banner02.jpg', 'https://i.postimg.cc/3R9V2Mt6/Cover02.jpg', '15.jpg', 'Banner15.jpg'),
-(16, 'festival', '打狗祭', '2024-10-12', '11:00:00', '高雄流行音樂中心', '南部', '桃園市龜山區文化一路250號', '遨遊在大宇宙中的外星小怪獸，受到打狗港灣的強大召喚！為了這群有夢想的人，打狗星際入口再度開啟》》》》》》\n延續去年的活動場域，以高流海音館、海風廣場為核心演出場域，加上珊瑚礁群、LIVE WAREHOUSE等五大場域，再次將愛河灣打造成充滿奇幻外星小怪獸的音樂宇宙星樂園，就是要讓樂迷與外星小怪獸一同遨遊穿梭，享受音樂的衝撞搖擺與微醺的快樂。', 'iMe TW', 6, 'https://i.postimg.cc/dVqGYcnh/temp-Image-FAo-ZMq.avif', 'https://i.postimg.cc/W4yZgFVZ/temp-Image-LPZrg4.avif', '16.avif', 'Banner16.jpg'),
-(17, 'festival', '浮現祭', '2024-08-19', '20:00:00', '霧峰', '中部', '臺北市松山區南京東路4段2號', '單日雙舞台十二組卡司，一次滿足你12個願望\n雨山眾神召集中：椅子樂團、南西肯恩、庸俗救星、靈魂沙發、JADE⋯⋯等共聚一堂，邀請所有觀眾與神同慶！\n與 「 Legacy 傳 音樂展演空間 」共同合作，將聲光音響的極致饗宴帶至政大校園\n當日活動將與「小蝸牛市集」合作，精選文山區在地特色商家，並邀請各式特色攤商集結雨山祭，打造獨一無二的雨山市集', '用心音樂', 7, 'https://i.postimg.cc/cCD1bn6x/Banner04.jpg', 'https://i.postimg.cc/mgFvJ5rz/Cover04.jpg', '17.jpg', 'Banner17.jpg'),
-(18, 'festival', '貴人散步音樂節', '2024-11-04', '11:00:00', '台南市中西區', '南部', '新北市新莊區新北大道四段3號8樓', '象徵圓滿幸運的第7年，超強Lucky 7企劃陣容展現台灣音樂面貌\n來自世界各地多種面向的77組音樂人等你來挖寶\n全亞洲最多人潮、全台灣最國際化的Showcase音樂節\n在台南多個場館從古蹟到藝廊感受不同的演出體驗\n音樂演出之外還能享受城市探險的吃喝玩樂\n各式講座論壇，產業人士齊聚，與同業對話交流的好機會！\n多元跨界展演、城市漫遊旅程，還有更多結合音樂的另類體驗享受！', '大鴻藝術BIG ART', 1, 'https://i.postimg.cc/C17wRqGG/Banner09.jpg', 'https://i.postimg.cc/CMP91gBn/Cover09.jpg', '18.jpg', 'Banner18.jpg'),
-(19, 'festival', '禾火OUT', '2024-09-14', '11:00:00', 'Pipe', '北部', '台北市南港區市民大道8段99號', '中秋連假首選，雙日雙舞台，超過 25 組超強卡司在公館水岸輪番演出\n最酷主題市集：從美食、飲品、到古著選物，吃喝玩買一次到位\n充氣沙發區、露天座位區，讓你躺著看坐著看都可以', '火氣音樂', 9, 'https://i.postimg.cc/wxFBvS2C/Banner05.jpg', 'https://i.postimg.cc/wBXSTRL9/Cover05.jpg', '19.jpg', 'Banner19.jpg'),
-(20, 'festival', '浪人祭', '2024-12-10', '11:00:00', '漁光島', '南部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '⟢　五週年 - 震撼王城 海味鉅獻　⟣\n戎克、朱印、克拉克大帆船，晚渡於海陸之城，港內寬衍，可泊千艘。\n夕陽西下，海晏捲朱旗，歷史的軌跡被鑲入城牆壁鎖，世世代代的王城，經過四個世紀的變革，帶來多族群的共生共榮。\n⟢　浪撼魚龍宅，盂懸上下天　⟣\n深海的龍嚎引萬物復甦，海底的熔岩劃開一道赤浪，鯤魚鼓浪，位於高處的龍宮，秋夜即將展開三日熱鬧晚宴，龍宮照欲醒，金黃色魚群奏起樂器，抬起「玉手箱」穿梭於赤足章魚觸手前，優美的旋律將撼動這片大海。', 'Young Team Productions', 2, 'https://i.postimg.cc/rwRyfzTT/Banner06.jpg', 'https://i.postimg.cc/Y9tT42zY/Cover06.jpg', '20.jpg', 'Banner20.jpg'),
-(21, 'festival', '簡單生活節', '2024-12-28', '12:00:00', '華山文創園區', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '「簡單生活 Simple Life」這個品牌，自我期許是個風格化的媒介，我們希望能夠讓創作者與熱愛者在其中相遇，並且彼此扶持成長。創作者可以從生活中萌芽，在生活中成長，直到力量足夠強大。', 'Young Team Productions', 8, 'https://i.postimg.cc/N0hsSYGH/Banner08.jpg', 'https://i.postimg.cc/nrPWw4bG/Cover08.jpg', '21.jpg', 'Banner21.jpg');
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `artist`
 --
 
 CREATE TABLE `artist` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `art_name` varchar(50) DEFAULT NULL,
   `photo` varchar(300) DEFAULT NULL,
   `photoname` varchar(100) DEFAULT NULL,
@@ -150,40 +84,56 @@ INSERT INTO `artist` (`id`, `art_name`, `photo`, `photoname`, `spotify_id`, `gen
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `categories`
+-- 資料表結構 `activity`
 --
 
-CREATE TABLE `categories` (
-  `sid` int NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `parent_sid` int NOT NULL DEFAULT '0'
+CREATE TABLE `activity` (
+  `actid` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `class` varchar(100) DEFAULT NULL,
+  `actname` varchar(255) NOT NULL,
+  `actdate` date DEFAULT NULL,
+  `acttime` time DEFAULT NULL,
+  `location` varchar(255) NOT NULL,
+  `area` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `descriptions` varchar(2000) DEFAULT NULL,
+  `organizer` varchar(255) DEFAULT NULL,
+  `artist_id` int DEFAULT NULL,
+  `picture` varchar(255) DEFAULT NULL,
+  `cover` varchar(255) DEFAULT NULL,
+  `picinfrontend` varchar(255) NOT NULL,
+  `mingpic` varchar(255) NOT NULL,
+  KEY `activity_class` (`class`),
+  KEY `artist_id` (`artist_id`),
+  CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- 傾印資料表的資料 `categories`
+-- 傾印資料表的資料 `activity`
 --
 
-INSERT INTO `categories` (`sid`, `name`, `parent_sid`) VALUES
-(1, '程式設計', 0),
-(2, '繪圖軟體', 0),
-(3, '網際網路應用', 0),
-(4, 'PHP', 1),
-(5, 'JavaScript', 1),
-(7, 'PS', 2),
-(8, 'Chrome', 3),
-(9, '騙錢的', 3),
-(10, 'C++', 1),
-(16, '椅拉', 2),
-(1, '程式設計', 0),
-(2, '繪圖軟體', 0),
-(3, '網際網路應用', 0),
-(4, 'PHP', 1),
-(5, 'JavaScript', 1),
-(7, 'PS', 2),
-(8, 'Chrome', 3),
-(9, '騙錢的', 3),
-(10, 'C++', 1),
-(16, '椅拉', 2);
+INSERT INTO `activity` (`actid`, `class`, `actname`, `actdate`, `acttime`, `location`, `area`, `address`, `descriptions`, `organizer`, `artist_id`, `picture`, `cover`, `picinfrontend`, `mingpic`) VALUES
+(1, 'concert', '一生到底', '2024-08-17', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '一生到底 One Life,One Shot人生像場一鏡到底的電影，時間不曾為誰停下，無法倒轉重來、也無法按下暫停。Let’s keep rolling!不斷前進的過程中，最珍貴的便是每次聚在一起就充滿能量，很多事情一時沒有答案，至少、你有滅火器的音樂可以作伴。人生keep rolling的BGM，讓滅火器陪你，一生到底。', '火氣音樂', 16, 'https://i.postimg.cc/v8Vr7zcZ/temp-Image-GXQJZ9.avif', 'https://i.postimg.cc/tTVx5qRM/temp-Image-GTMpop.avif', '1.avif', 'Banner01.jpg'),
+(2, 'concert', 'The Yussef Live', '2024-08-03', '20:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '南倫敦出生的 Yussef Dayes，合成一系列來自南半球、西非到加勒比海和南美洲等令人眼花繚亂的聲音和節奏，他的表演融合了精湛的技術、強烈的激情和原始的情感，更以突破界限的音樂風景吸引全世界的樂迷觀眾，在倫敦當代爵士樂壇中占有重要地位。\nYussef Dayes 4歲就開始了他的音樂生涯，10歲從師 Billy Cobham（爵士巨人 Miles Davis 鼓手、Mahavishnu Orchestra 成員），和兄弟及朋友們組成樂團 United Vibrations，2011年發行《Galaxies Not Ghettos》，當時的 Yussef Dayes 只有16歲。儘管後來以 Kamaal Williams 組成的 Yussef Kamaal、以及和 Tom Misch 合作專輯《What Kinda Music》聲名大噪，Yussef Dayes 在2023年發行個人首張專輯《Black Classical Music》，融合爵士樂、雷鬼與嘻哈，邀來 Masego、Chronixx、Jamiliah Barry、Tom Misch 等人合作，獲得全英音樂獎（BRIT Awards）「最佳新人」「最佳另類／搖滾藝人」兩項年度提名。', 'Young Team Productions', 14, 'https://i.postimg.cc/XvqFrKR3/temp-Image-DYHcq-Q.avif', 'https://i.postimg.cc/nzsvPK2T/temp-Imagenl-Bj-Y0.avif', '2.avif', 'Banner02.jpg'),
+(3, 'concert', '10CM 2024 ONLY', '2024-09-06', '19:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '10CM在今年1月推出單曲’5.5 소년(少年)’，而4月25日發布全新單曲 5.6 ’너랑 밤새고 싶어(Late Night Walk)‘緩慢而甜蜜的唱出了戀情萌芽的羞澀與喜悅，近期甫創下收視紀錄的韓劇《淚之女王》中，10CM的聲音也讓電視劇大放異彩，過去半年內不斷推出作品的10CM將從7月開始於亞洲各國帶來精彩的演出。', 'LA RUE 文創設計', 12, 'https://i.postimg.cc/Hs0bRk0G/temp-Imagevb-O7v1.avif', 'https://i.postimg.cc/mkY1vmH3/temp-Image-DW5gw-H.avif', '3.avif', 'Banner03.jpg'),
+(4, 'concert', 'aespa演唱會', '2024-10-22', '19:00:00', '林口體育館', '北部', '桃園市龜山區文化一路250號', 'aespa出道四年首次正式來台北開專場演唱會，將於8月10號在林口體育館舉行。自從今年一月在台北舉行過專輯簽售會和受邀參加科技公司商演後，台北的MY對aespa來台北舉辦演唱會的呼聲越發高漲，在之後無預警公布的世界巡演城市名單中台北赫然在列，讓台北粉絲又驚又喜，希望演唱會快點到來。\naespa由四名成員Karina、Giselle、Winter、Ningning組成，自出道以來就以獨特的世界觀、前衛的團體概念，以及超強的舞台魅力，收穫眾多粉絲的心。她們在Youtube上每首MV的最低觀看次數都超過1億，是當代超人氣女團。\naespa在時尚方面也非常出色，瑞士奢華珠寶Chopard、義大利Versace、美國Ralph Lauren等世界知名品牌也選擇aespa團體及其成員作為該品牌的宣傳大使和代言人。\n這次台北場的演出日剛好是七夕情人節，在這個充滿粉色泡泡的日子裡，不知道成員們會給台北粉絲們帶來什麼樣的驚喜呢! 台北的MY們，八月一定要來現場和aespa一起創造幸福的回憶！', 'iMe TW', 4, 'https://i.postimg.cc/GtSrQnS9/Banner13.jpg', 'https://i.postimg.cc/257KfRN6/Cover13.jpg', '4.jpg', 'Banner04.jpg'),
+(5, 'concert', 'Energy 一觸即發', '2024-08-04', '19:30:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '招牌發電｜經典回憶殺唱個夠\n帶你走進音樂回憶殺，首首都是陪伴人生的迷人觸景，不只「放手」、「多愛我一天」、「某年某月某一天」、「Come On」、「無懈可擊」，承諾過「永遠不說再見」的Energy，現在實現諾言，再度因你而聚，為你而跳。\n全面放電｜天王天后御用總監 打造最大夜店 \n潮流舞曲製造機音樂總監 Starr Chen 陳星翰，全新改編經典歌曲，將音樂能量觸電、發電、放電，音浪電力無限激盪，震撼台北小巨蛋！\n天王天后御用舞蹈總監林大鈞，炸裂編舞跨年代舞風大精華！舞曲全場炸翻最大夜店！\n零距離觸電｜天地對立光柱 巨型地面Led延伸舞台\n演唱會製作魔法團隊必應創造，訂製天地對立移動巨型異變光柱、巨型地面Led延伸舞台，近距離與你接觸！重磅打造超升級超大型的動感Party！\n記憶充電｜橫跨街舞世代挑動舞感神經 \n睽違22年重返當年，結合跨世代舞曲大招，當累積的能量重新匯集，走過分合 Energy 再衝一次，一起共寫屬於我們的新傳奇！', '用心音樂', 13, 'https://i.postimg.cc/8PghZ66B/temp-Imagep-QE9yu.avif', 'https://i.postimg.cc/V6QjpXjC/energy.jpg', '5.jpg', 'Banner05.jpg'),
+(6, 'concert', 'Travis World Tour', '2024-09-03', '20:00:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', 'Travis Japan於2012年由麥可傑克森的編舞師Travis Payne所舉辦的徵選會中選出的成員所組成，是一支擁有強大舞蹈、表演實力的七人團體。\nTravis Japan曾參與舞台劇《虎者-NINJAPAN-》演出並擔任重要角色。2020年於可容納一萬七千人的橫濱體育場連續舉辦三場演出，門票全數售罄，2021年即在日本12個城市展開全國巡演《IMAGE NATION》。\n2022年3月，成員們為了精進自身能力，前往美國洛杉磯留學，留學期間參加了世界最大規模的舞蹈比賽「World of Dance」，以及美國NBC播出的指標性選秀節目「美國達人秀」，展現出他們精湛的舞蹈技巧，也成為了他們出道的契機。備受高度期待的首支主打單曲《JUST DANCE!》MV不但於YouTube觀看次數衝破千萬，也是J-POP史上首位以出道曲強勢登上告示牌美國除外全球單曲榜第五名的團體，此曲MV在YouTube觀看次數已突破千萬次。\n以首張專輯《Road to A》為題，不僅已在日本完成全國巡迴演唱會，吸引約31萬人參與，如今更宣布將開啟首次世界巡迴演唱會《Travis Japan World Tour 2024 Road to A》，要向世界展現他們最精彩、吸睛的舞蹈魅力！', '大鴻藝術BIG ART', 15, 'https://i.postimg.cc/tJRCk5qv/Banner01.jpg', 'https://i.postimg.cc/RVq5QF5T/Cover01.jpg', '6.jpg', 'Banner06.jpg'),
+(7, 'concert', 'BTOB FAN-CON', '2024-09-28', '19:30:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '等了近六年！韓流三代團BTOB徐恩光、李旼赫、任炫植、PENIEL宣布6/29來台！\n很會唱、很會跳還很放閃！BTOB 終於要來啦！\n距離上次2018/9/8來台舉辦「BTOB TIME -THIS IS US」演唱會後，Melody（官粉名）等了近六年，終於要在6/29（六）見到韓流人氣實力三代團BTOB的四帥成員徐恩光、李旼赫、任炫植、PENIEL於TICC台北國際會議中心舉辦「2024 BTOB FAN-CON [OUR DREAM] in TAIPEI」！', '火氣音樂', 7, 'https://i.postimg.cc/j20J3pLd/temp-Imagel-FGn-Vc.avif', 'https://i.postimg.cc/G2ZkwBSR/temp-Imageiixi-F0.avif', '7.avif', 'Banner07.jpeg'),
+(8, 'concert', 'Starry Sky', '2024-09-30', '18:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '是勞模們迷茫徬徨的職涯課題\n是小男孩拒絕世故的搖滾初心', 'Young Team Productions', 8, 'https://i.postimg.cc/9Frcfzr9/Banner14.jpg', 'https://i.postimg.cc/k4MhJ17y/Cover14.jpg', '8.jpg', 'Banner08.jpg'),
+(9, 'concert', '建宮蓋廟', '2024-08-15', '19:30:00', 'Zepp New Taipei', '北部', '新北市新莊區新北大道四段3號8樓', '宮廟\n不僅是多重領域大門，也是意識流的集合中心；\n宮廟\n不僅建造在地球上，也建造在太陽系八大行星衛星裡。\n令人驚奇的是\n太陽系邊界守門行星冥王星本身就是一座漂浮的宮廟行星。\n為什麼太陽系裏遍佈宮廟？\n是古地球人得到神仙的旨意、神仙的法力，而建宮蓋廟於整個太陽系？\n還是太陽系的古生命對於信仰有共識？\n我們看到的不只是過去，而是未來。\n2154年9大行星及衛星出現鬧鬼附身現象\n2159年正式進入「交由撒旦統治太陽系1000年」。\n3206年進入土星環發現多座破損宮廟隕石漂流在環中\n3264年發現冥王星是一座巨大的漂流宮廟\n3278年太陽系血肉宮廟網絡完成，血肉Boyz持續在宇宙中殺翻現場！', 'LA RUE 文創設計', 17, 'https://i.postimg.cc/CLWYD3d9/temp-Imagea-Dk-U5o.avif', 'https://i.postimg.cc/P52YfVF2/temp-Image9-Blyq-T.avif', '9.avif', 'Banner09.jpg'),
+(10, 'festival', '霓虹綠洲音樂祭', '2024-12-25', '12:00:00', '文山農場', '北部', '桃園市龜山區文化一路250號', '本屆活動除了再度邀請台灣、日本、韓國、泰國等地的音樂人，更邀請到來自中國石家莊的搖滾傳奇萬能青年旅店、紐西蘭的蒙面歌手 JonathanBree、香港天團 RubberBand，以及前陣子於社群引起熱烈關注的金氏世界紀錄年紀最小的小學生DJ RINOKA，吸引了許多親子、寵物家庭族群一同參與本屆活動。此外，霓虹綠洲音樂祭還將新增主打嘻哈、新聲的舞台與「前夜祭」擴大舉辦，透過結合音樂祭、露營、市集，為北部都會區帶來冬日弛放音樂盛事！', 'iMe TW', 10, 'https://i.postimg.cc/8ky1DLPD/Banner12.jpg', 'https://i.postimg.cc/KY2HVcVw/Cover12.jpg', '10.jpg', 'Banner10.jpg'),
+(11, 'festival', '雨山祭', '2024-09-24', '11:00:00', '台北小巨蛋', '北部', '臺北市松山區南京東路4段2號', '・2024年春假出遊首選音樂祭盛事\n・連續三年完售，台灣大型指標性音樂祭之一\n・台中海線小鎮漫遊，吃喝玩樂應有盡有\n・五周年擴大舉行，九大區域等你來解鎖\n・超過六國演出藝人即將來台獻技\n生活的紛擾及懊悔就留在那裡吧！一起邁向未知的新方向，大步踏出步伐，每一步都會有新風景的誕生，如同主視覺想傳達給每個朋友，跨過「浮現大門」後，回歸最純粹的模樣，化身為能代表你自己的角色，讓我們一起登陸小鎮的慶典吧！\n浮現祭五周年，再解鎖兩大場域，走進常民生活場景中，以及與海線當地有更多連結。未來，我們也將持續跨出海外，寫下更多新故事！如果你也想加入這段旅程，明年春天，我們相約老地方——台中清水，一個屬於我們冒險的起點。', '用心音樂', 9, 'https://i.postimg.cc/3NwYmx1P/Banner11.jpg', 'https://i.postimg.cc/28gJQ7xz/Cover11.jpg', '11.jpg', 'Banner11.jpg'),
+(12, 'festival', '大港開唱', '2024-11-09', '11:00:00', '駁二藝術特區', '南部', '新北市新莊區新北大道四段3號8樓', '《大港開唱》（Megaport Festival），創立於2006年，由台北《野台開唱》（Formoz Festival：1995～2013）主辦團隊，在高雄創立。一南一北的兩大型音樂祭品牌，是台灣如今百花齊放音樂祭市場的先趨。即將於今年邁入第十五屆的大港開唱，於每年三月底舉辦，也是目前台灣最具指標性的大型戶外音樂祭活動。\n大港位於高雄港邊，獨特的海港地景和人文風情，常勾起人生中各種酸甜苦辣的回憶。也因如此，大港總是邀請有著豐富人生歷程的知名藝人及業界前輩演出，也會與新一代的樂團或藝人一起合作演出，交融出世代之間的化學效應，往往成為當年度為人津津樂道的經典現場，包括《黃金夜總會》的賀一航、《古惑仔》裡的大飛哥-黃秋生，永駐在人們青春回憶中的日本偶像酒井法子，再到唱出《心事誰人知》的沈文程和演出《花甲男孩》的三金得主蔡振南。除此之外，唱著《少年吔，安啦！》的伍佰以及後來變成姐姐的謝金燕，都曾是大港舞台的主角之一。', '大鴻藝術BIG ART', 10, 'https://i.postimg.cc/Zqrbhg0D/Banner07.jpg', 'https://i.postimg.cc/C51tNvtK/Cover07.jpg', '12.jpg', 'Banner12.jpg'),
+(13, 'festival', '火球祭', '2024-08-31', '11:00:00', '臺北流行音樂中心', '北部', '台北市南港區市民大道8段99號', '地球人請注意\n重返愛的主場，火球祭正式回歸！\n距離上次火球祭\n已經過了 1,344 天\n但！有些記憶不管過多久還是難忘\n還記得播放著搖滾樂的旋轉木馬上，她的笑容讓我暈到現在\n人生中第一次踏上紅土、在音樂聲中滾草皮\n時不時被感動到哭得像個傻瓜、下一秒又笑得像個笨蛋\n在雨中熱舞、在太陽下的草皮曬乾自己\n直接拿著感應手環、買個外帶坐到看台區爽吃爽喝爽聽團❤\n48 小時裡不間斷的快樂\n現在回想起來都會笑，太爽了吧？有夠夢幻\n準備好重返我們的搖滾遊樂園嗎？', '火氣音樂', 1, 'https://i.postimg.cc/Nfzf8mWb/Banner03.jpg', 'https://i.postimg.cc/QMG23JB6/Cover03.jpg', '13.jpg', 'Banner13.jpg'),
+(14, 'festival', '赤聲躁動音樂祭', '2024-10-13', '11:00:00', 'Legacy Taipei', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '大膽飛天｜不純的純愛｜Y2K大爆炸\n「把糖果穿在身上、大聲唱歌，和冰友跳著最in的舞步並肩搖擺！」\n千禧年代的自由及美好令人無限懷念，\n浪漫五月，跟著赤聲戰隊來去Y2K的世界，\n一起大膽追愛，在浪漫大宇宙中自由飛翔！！', 'Young Team Productions', 2, 'https://i.postimg.cc/k4qnMcbM/Banner10.jpg', 'https://i.postimg.cc/jSN1Zn8y/Cover10.jpg', '14.jpg', 'Banner14.jpg'),
+(15, 'festival', '台秋祭', '2024-08-31', '11:00:00', '驛鐵道文化園區', '中部', '新北市新莊區新北大道四段3號8樓', '台中，\n是一個充滿熱情的所在，\n一個從北到南都得路過的所在，\n在這個交會點，\n無論是快樂、寂寞還是難過，我們都曾一起度過，\n就在「台秋祭」這個地方。\n說的沒錯，\n彼此都是生命中的過客，\n那既然你我都是旅客，\n就一起感受現場的一切，\n像是一種洗禮，一種契機，\n也會是一種轉運。\n感謝過去兩年的支持，\n歡迎來到，台秋轉運站。', 'LA RUE 文創設計', 3, 'https://i.postimg.cc/ZKR5yVDC/Banner02.jpg', 'https://i.postimg.cc/3R9V2Mt6/Cover02.jpg', '15.jpg', 'Banner15.jpg'),
+(16, 'festival', '打狗祭', '2024-10-12', '11:00:00', '高雄流行音樂中心', '南部', '桃園市龜山區文化一路250號', '遨遊在大宇宙中的外星小怪獸，受到打狗港灣的強大召喚！為了這群有夢想的人，打狗星際入口再度開啟》》》》》》\n延續去年的活動場域，以高流海音館、海風廣場為核心演出場域，加上珊瑚礁群、LIVE WAREHOUSE等五大場域，再次將愛河灣打造成充滿奇幻外星小怪獸的音樂宇宙星樂園，就是要讓樂迷與外星小怪獸一同遨遊穿梭，享受音樂的衝撞搖擺與微醺的快樂。', 'iMe TW', 6, 'https://i.postimg.cc/dVqGYcnh/temp-Image-FAo-ZMq.avif', 'https://i.postimg.cc/W4yZgFVZ/temp-Image-LPZrg4.avif', '16.avif', 'Banner16.jpg'),
+(17, 'festival', '浮現祭', '2024-08-19', '20:00:00', '霧峰', '中部', '臺北市松山區南京東路4段2號', '單日雙舞台十二組卡司，一次滿足你12個願望\n雨山眾神召集中：椅子樂團、南西肯恩、庸俗救星、靈魂沙發、JADE⋯⋯等共聚一堂，邀請所有觀眾與神同慶！\n與 「 Legacy 傳 音樂展演空間 」共同合作，將聲光音響的極致饗宴帶至政大校園\n當日活動將與「小蝸牛市集」合作，精選文山區在地特色商家，並邀請各式特色攤商集結雨山祭，打造獨一無二的雨山市集', '用心音樂', 7, 'https://i.postimg.cc/cCD1bn6x/Banner04.jpg', 'https://i.postimg.cc/mgFvJ5rz/Cover04.jpg', '17.jpg', 'Banner17.jpg'),
+(18, 'festival', '貴人散步音樂節', '2024-11-04', '11:00:00', '台南市中西區', '南部', '新北市新莊區新北大道四段3號8樓', '象徵圓滿幸運的第7年，超強Lucky 7企劃陣容展現台灣音樂面貌\n來自世界各地多種面向的77組音樂人等你來挖寶\n全亞洲最多人潮、全台灣最國際化的Showcase音樂節\n在台南多個場館從古蹟到藝廊感受不同的演出體驗\n音樂演出之外還能享受城市探險的吃喝玩樂\n各式講座論壇，產業人士齊聚，與同業對話交流的好機會！\n多元跨界展演、城市漫遊旅程，還有更多結合音樂的另類體驗享受！', '大鴻藝術BIG ART', 1, 'https://i.postimg.cc/C17wRqGG/Banner09.jpg', 'https://i.postimg.cc/CMP91gBn/Cover09.jpg', '18.jpg', 'Banner18.jpg'),
+(19, 'festival', '禾火OUT', '2024-09-14', '11:00:00', 'Pipe', '北部', '台北市南港區市民大道8段99號', '中秋連假首選，雙日雙舞台，超過 25 組超強卡司在公館水岸輪番演出\n最酷主題市集：從美食、飲品、到古著選物，吃喝玩買一次到位\n充氣沙發區、露天座位區，讓你躺著看坐著看都可以', '火氣音樂', 9, 'https://i.postimg.cc/wxFBvS2C/Banner05.jpg', 'https://i.postimg.cc/wBXSTRL9/Cover05.jpg', '19.jpg', 'Banner19.jpg'),
+(20, 'festival', '浪人祭', '2024-12-10', '11:00:00', '漁光島', '南部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '⟢　五週年 - 震撼王城 海味鉅獻　⟣\n戎克、朱印、克拉克大帆船，晚渡於海陸之城，港內寬衍，可泊千艘。\n夕陽西下，海晏捲朱旗，歷史的軌跡被鑲入城牆壁鎖，世世代代的王城，經過四個世紀的變革，帶來多族群的共生共榮。\n⟢　浪撼魚龍宅，盂懸上下天　⟣\n深海的龍嚎引萬物復甦，海底的熔岩劃開一道赤浪，鯤魚鼓浪，位於高處的龍宮，秋夜即將展開三日熱鬧晚宴，龍宮照欲醒，金黃色魚群奏起樂器，抬起「玉手箱」穿梭於赤足章魚觸手前，優美的旋律將撼動這片大海。', 'Young Team Productions', 2, 'https://i.postimg.cc/rwRyfzTT/Banner06.jpg', 'https://i.postimg.cc/Y9tT42zY/Cover06.jpg', '20.jpg', 'Banner20.jpg'),
+(21, 'festival', '簡單生活節', '2024-12-28', '12:00:00', '華山文創園區', '北部', '台北市中正區八德路一段1號華山1914創意文化園區中5A館', '「簡單生活 Simple Life」這個品牌，自我期許是個風格化的媒介，我們希望能夠讓創作者與熱愛者在其中相遇，並且彼此扶持成長。創作者可以從生活中萌芽，在生活中成長，直到力量足夠強大。', 'Young Team Productions', 8, 'https://i.postimg.cc/N0hsSYGH/Banner08.jpg', 'https://i.postimg.cc/nrPWw4bG/Cover08.jpg', '21.jpg', 'Banner21.jpg');
 
 -- --------------------------------------------------------
 
@@ -192,9 +142,13 @@ INSERT INTO `categories` (`sid`, `name`, `parent_sid`) VALUES
 --
 
 CREATE TABLE `event_artists` (
-  `eaid` int NOT NULL,
+  `eaid` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `event_id` int DEFAULT NULL,
-  `artist_id` int DEFAULT NULL
+  `artist_id` int DEFAULT NULL,
+  KEY `artist_id` (`artist_id`),
+  KEY `event_id` (`event_id`),
+  CONSTRAINT `event_artists_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`),
+  CONSTRAINT `event_artists_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `activity` (`actid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -284,121 +238,11 @@ INSERT INTO `event_artists` (`eaid`, `event_id`, `artist_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `favorite`
---
-
-CREATE TABLE `favorite` (
-  `id` int NOT NULL,
-  `member_id` int NOT NULL,
-  `item_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 傾印資料表的資料 `favorite`
---
-
-INSERT INTO `favorite` (`id`, `member_id`, `item_id`) VALUES
-(1, 1, 5),
-(2, 2, 20),
-(3, 5, 2),
-(4, 3, 11),
-(10, 1, 2),
-(11, 1, 9),
-(12, 1, 1),
-(16, 1, 17),
-(40, 64, 2),
-(41, 64, 5),
-(42, 64, 9),
-(52, 42, 17),
-(60, 42, 2),
-(61, 42, 5),
-(62, 42, 9),
-(63, 42, 1),
-(64, 42, 8),
-(65, 42, 7),
-(66, 42, 4),
-(67, 42, 14);
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `from_csv_01`
---
-
-CREATE TABLE `from_csv_01` (
-  `name` varchar(255) NOT NULL,
-  `age` int NOT NULL,
-  `address` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 傾印資料表的資料 `from_csv_01`
---
-
-INSERT INTO `from_csv_01` (`name`, `age`, `address`) VALUES
-('李小明', 25, '台北市'),
-('陳小華', 28, '高雄市'),
-('吳大同', 24, '宜蘭縣'),
-('李小明', 25, '台北市'),
-('陳小華', 28, '高雄市'),
-('吳大同', 24, '宜蘭縣');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `markets`
---
-
-CREATE TABLE `markets` (
-  `id` int NOT NULL,
-  `market_name` varchar(50) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 傾印資料表的資料 `markets`
---
-
-INSERT INTO `markets` (`id`, `market_name`, `address`) VALUES
-(1, '7-11台北小巨蛋', '台北市松山區南京東路四段2號1樓'),
-(2, '7-11台北中崙', '台北市松山區八德路三段27號'),
-(3, '7-11台北民有', '台北市松山區民權東路三段108號'),
-(4, '7-11台北吉祥', '台北市松山區八德路四段245巷52弄31號'),
-(5, '7-11台北京城', '台北市松山區南京東路四段75之2號1樓'),
-(6, '7-11台北京復', '台北市松山區光復北路11巷44號'),
-(7, '7-11台北延壽', '台北市松山區延壽街422號'),
-(8, '7-11台北東吉', '台北市松山區民生東路五段100號'),
-(9, '7-11台北中興', '台北市信義區基隆路二段22號'),
-(10, '7-11台北世貿', '台北市信義區信義路五段5號1樓'),
-(11, '7-11台北北府', '台北市信義區松仁路162號164號1樓'),
-(12, '7-11台北北醫', '台北市信義區吳興街252號'),
-(13, '7-11台北松山', '台北市信義區忠孝東路五段386號'),
-(14, '7-11台北松高', '台北市信義區基隆路一段141號1樓'),
-(15, '7-11台北松智', '台北市信義區莊敬路325巷43號'),
-(16, '7-11台北大安復興', '台北市大安區復興南路一段247號'),
-(17, '7-11台北永康', '台北市大安區永康街43號'),
-(18, '7-11台北合維', '台北市大安區四維路170巷8號1樓'),
-(19, '7-11台北八德', '台北市中正區臨沂街1號1樓'),
-(20, '7-11台北中正許昌', '台北市中正區許昌街26號1樓'),
-(21, '7-11新北台藝大', '新北市板橋區大觀路一段59號'),
-(22, '7-11新北府中', '新北市板橋區府中路82號84號1樓'),
-(23, '7-11新北三洋', '新北市新莊區中正路677號679號'),
-(24, '7-11新北加州', '新北市新莊區中平路81巷2號'),
-(25, '7-11新北宏福', '新北市新莊區公園一路34號36號1樓'),
-(26, '7-11新北花旗', '新北市新莊區中港路132巷26號'),
-(27, '7-11新北副都心', '新北市新莊區中央路287號289號1樓'),
-(28, '7-11新北捷仕堡', '新北市新莊區龍安路15號'),
-(29, '7-11新北莊和', '新北市新莊區中和街34.36號'),
-(30, '7-11新北傑出', '新北市新莊區昌平街61號63號1樓');
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `member`
 --
 
 CREATE TABLE `member` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
@@ -486,7 +330,7 @@ INSERT INTO `member` (`id`, `name`, `email`, `password`, `gender`, `mobile`, `bi
 --
 
 CREATE TABLE `nclass` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `class` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -505,11 +349,13 @@ INSERT INTO `nclass` (`id`, `class`) VALUES
 --
 
 CREATE TABLE `notification` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `content` varchar(100) NOT NULL,
   `sent_time` datetime NOT NULL,
-  `noti_class` int NOT NULL
+  `noti_class` int NOT NULL,
+  KEY `noti_class` (`noti_class`),
+  CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`noti_class`) REFERENCES `nclass` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -535,121 +381,11 @@ INSERT INTO `notification` (`id`, `title`, `content`, `sent_time`, `noti_class`)
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `order_detail`
---
-
-CREATE TABLE `order_detail` (
-  `id` int NOT NULL,
-  `order_num` varchar(255) NOT NULL,
-  `member_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `quantity` int NOT NULL,
-  `payment_method` varchar(50) NOT NULL,
-  `pickup_method` varchar(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `TempVar` varchar(255) DEFAULT NULL,
-  `outside` int DEFAULT NULL,
-  `ship` int DEFAULT NULL,
-  `storeid` int DEFAULT NULL,
-  `storename` varchar(255) DEFAULT NULL,
-  `storeaddress` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 傾印資料表的資料 `order_detail`
---
-
-INSERT INTO `order_detail` (`id`, `order_num`, `member_id`, `product_id`, `quantity`, `payment_method`, `pickup_method`, `created_at`, `TempVar`, `outside`, `ship`, `storeid`, `storename`, `storeaddress`) VALUES
-(1, 'Aa10001', 42, 2, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(2, 'Aa10002', 41, 3, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(3, 'Aa10003', 42, 19, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(4, 'Aa10004', 41, 19, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(5, 'Aa10005', 42, 19, 1, '信用卡', '宅配到府', '2024-07-14 15:17:56', '', 0, 0, 0, '', ''),
-(6, 'Aa10006', 43, 4, 3, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(7, 'Aa10007', 4, 1, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(8, 'Aa10008', 5, 16, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(9, 'Aa10009', 6, 7, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(10, 'Aa10010', 17, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(11, 'Aa10011', 8, 19, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(12, 'Aa10012', 9, 1, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(13, 'Aa10013', 20, 11, 5, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(14, 'Aa10014', 31, 22, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(15, 'Aa10015', 22, 13, 4, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(16, 'Aa10016', 13, 24, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(17, 'Aa10017', 14, 15, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(18, 'Aa10018', 5, 6, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(19, 'Aa10019', 6, 17, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(20, 'Aa10020', 7, 18, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(21, 'Aa10021', 8, 19, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(22, 'Aa10022', 19, 20, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(23, 'Aa10023', 20, 21, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(24, 'Aa10024', 41, 22, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(25, 'Aa10025', 42, 2, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(26, 'Aa10026', 13, 24, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(27, 'Aa10027', 24, 15, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(28, 'Aa10028', 5, 16, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(29, 'Aa10029', 16, 7, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(30, 'Aa10030', 1, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
-(35, 'Aa10031', 42, 1, 1, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(36, 'Aa10031', 42, 4, 2, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(37, 'Aa10031', 42, 23, 1, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(38, 'Aa10031', 42, 1, 1, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(39, 'Aa10031', 42, 4, 2, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(40, 'Aa10031', 42, 23, 1, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
-(41, 'FSuslad', 42, 4, 4, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
-(42, 'FSuslad', 42, 10, 3, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
-(43, 'FSuslad', 42, 9, 5, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
-(44, 'FSuslad', 42, 19, 3, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
-(45, 'b2x36CF', 42, 24, 6, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
-(46, 'b2x36CF', 42, 3, 5, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
-(47, 'b2x36CF', 42, 31, 17, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
-(48, 'b2x36CF', 42, 29, 6, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
-(49, 'uNgn9MV', 64, 1, 1, '現金', '7-11', '2024-07-27 09:49:35', '', 0, 1111111, 276214, '翁和門市', '桃園市大溪區仁文里介壽路1151號1153號1樓'),
-(50, 'uNgn9MV', 64, 11, 2, '現金', '7-11', '2024-07-27 09:49:35', '', 0, 1111111, 276214, '翁和門市', '桃園市大溪區仁文里介壽路1151號1153號1樓'),
-(51, 'uNgn9MV', 64, 24, 2, '現金', '7-11', '2024-07-27 09:49:35', '', 0, 1111111, 276214, '翁和門市', '桃園市大溪區仁文里介壽路1151號1153號1樓'),
-(52, 'b9UP4DV', 42, 21, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
-(53, 'b9UP4DV', 42, 39, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
-(54, 'b9UP4DV', 42, 30, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
-(55, 'b9UP4DV', 42, 35, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
-(56, 'MTGu3Pp', 42, 46, 1, '現金', '7-11', '2024-07-31 13:25:03', '', 0, 1111111, 239156, '迪化門市', '台北市大同區民生西路343號345號'),
-(57, 'WZg9w1b', 42, 2, 1, '現金', '7-11', '2024-07-31 15:26:12', '', 0, 1111111, 118899, '掬華門市', '台北市中正區中華路二段405號407號'),
-(58, 'PE2DVCo', 42, 2, 1, '現金', '7-11', '2024-07-31 15:26:12', '', 0, 1111111, 118899, '掬華門市', '台北市中正區中華路二段405號407號'),
-(59, 'IXQdOXR', 42, 3, 1, '現金', '7-11', '2024-07-31 15:26:38', '', 0, 1111111, 126616, '立行門市', '新北市三重區力行路二段158號160號'),
-(60, 'g634lqv', 42, 2, 2, '現金', '7-11', '2024-07-31 16:40:49', '', 0, 1111111, 240226, '仟發門市', '台北市大同區民生西路95號97號'),
-(61, 'u71bFJw', 42, 1, 1, '現金', '7-11', '2024-07-31 16:41:42', '', 0, 1111111, 249957, '智成門市', '新北市三芝區中正路二段1號智成街79號');
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `otp`
---
-
-CREATE TABLE `otp` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `exp_timestamp` bigint NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- 傾印資料表的資料 `otp`
---
-
-INSERT INTO `otp` (`id`, `user_id`, `email`, `token`, `exp_timestamp`, `created_at`, `updated_at`) VALUES
-(1, 45, 'test0716@@grr.la', '697517', 1721203793672, '2024-07-17 15:39:53', '2024-07-17 15:39:53'),
-(7, 68, 'iamjin910501@gmail.com', '059913', 1722415295232, '2024-07-31 16:11:35', '2024-07-31 16:11:35');
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `product`
 --
 
 CREATE TABLE `product` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `picture` varchar(255) DEFAULT NULL,
   `picture2` varchar(255) DEFAULT NULL,
   `picture3` varchar(255) DEFAULT NULL,
@@ -718,11 +454,101 @@ INSERT INTO `product` (`id`, `picture`, `picture2`, `picture3`, `activity`, `nam
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `order_detail`
+--
+
+CREATE TABLE `order_detail` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `order_num` varchar(255) NOT NULL,
+  `member_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `quantity` int NOT NULL,
+  `payment_method` varchar(50) NOT NULL,
+  `pickup_method` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `TempVar` varchar(255) DEFAULT NULL,
+  `outside` int DEFAULT NULL,
+  `ship` int DEFAULT NULL,
+  `storeid` int DEFAULT NULL,
+  `storename` varchar(255) DEFAULT NULL,
+  `storeaddress` varchar(255) DEFAULT NULL,
+  KEY `product_id` (`product_id`),
+  KEY `member_id` (`member_id`),
+  CONSTRAINT `order_detail_ibfk_3` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `order_detail_ibfk_4` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 傾印資料表的資料 `order_detail`
+--
+
+INSERT INTO `order_detail` (`id`, `order_num`, `member_id`, `product_id`, `quantity`, `payment_method`, `pickup_method`, `created_at`, `TempVar`, `outside`, `ship`, `storeid`, `storename`, `storeaddress`) VALUES
+(1, 'Aa10001', 42, 2, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(2, 'Aa10002', 41, 3, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(3, 'Aa10003', 42, 19, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(4, 'Aa10004', 41, 19, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(5, 'Aa10005', 42, 19, 1, '信用卡', '宅配到府', '2024-07-14 15:17:56', '', 0, 0, 0, '', ''),
+(6, 'Aa10006', 43, 4, 3, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(7, 'Aa10007', 4, 1, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(8, 'Aa10008', 5, 16, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(9, 'Aa10009', 6, 7, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(10, 'Aa10010', 17, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(11, 'Aa10011', 8, 19, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(12, 'Aa10012', 9, 1, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(13, 'Aa10013', 20, 11, 5, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(14, 'Aa10014', 31, 22, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(15, 'Aa10015', 22, 13, 4, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(16, 'Aa10016', 13, 24, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(17, 'Aa10017', 14, 15, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(18, 'Aa10018', 5, 6, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(19, 'Aa10019', 6, 17, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(20, 'Aa10020', 7, 18, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(21, 'Aa10021', 8, 19, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(22, 'Aa10022', 19, 20, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(23, 'Aa10023', 20, 21, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(24, 'Aa10024', 41, 22, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(25, 'Aa10025', 42, 2, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(26, 'Aa10026', 13, 24, 2, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(27, 'Aa10027', 24, 15, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(28, 'Aa10028', 5, 16, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(29, 'Aa10029', 16, 7, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(30, 'Aa10030', 1, 8, 1, '信用卡', '宅配到府', '2024-07-15 15:17:56', '', 0, 0, 0, '', ''),
+(35, 'Aa10031', 42, 1, 1, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(36, 'Aa10031', 42, 4, 2, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(37, 'Aa10031', 42, 23, 1, '現金', '711取貨付款', '2024-07-22 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(38, 'Aa10031', 42, 1, 1, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(39, 'Aa10031', 42, 4, 2, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(40, 'Aa10031', 42, 23, 1, '現金', '711取貨付款', '2024-07-25 09:09:42', NULL, 0, 1111111, 863698, '豫銘門市', '台北市大安區大安路二段102號'),
+(41, 'FSuslad', 42, 4, 4, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
+(42, 'FSuslad', 42, 10, 3, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
+(43, 'FSuslad', 42, 9, 5, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
+(44, 'FSuslad', 42, 19, 3, '現金', '7-11', '2024-07-26 21:03:24', '', 0, 1111111, 163903, '福祥門市', '新北市土城區中央路一段320號322號'),
+(45, 'b2x36CF', 42, 24, 6, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
+(46, 'b2x36CF', 42, 3, 5, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
+(47, 'b2x36CF', 42, 31, 17, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
+(48, 'b2x36CF', 42, 29, 6, '現金', '7-11', '2024-07-26 21:04:13', '', 1, 1111111, 250348, '塘岐門市', '連江縣北竿鄉塘岐村219號'),
+(49, 'uNgn9MV', 64, 1, 1, '現金', '7-11', '2024-07-27 09:49:35', '', 0, 1111111, 276214, '翁和門市', '桃園市大溪區仁文里介壽路1151號1153號1樓'),
+(50, 'uNgn9MV', 64, 11, 2, '現金', '7-11', '2024-07-27 09:49:35', '', 0, 1111111, 276214, '翁和門市', '桃園市大溪區仁文里介壽路1151號1153號1樓'),
+(51, 'uNgn9MV', 64, 24, 2, '現金', '7-11', '2024-07-27 09:49:35', '', 0, 1111111, 276214, '翁和門市', '桃園市大溪區仁文里介壽路1151號1153號1樓'),
+(52, 'b9UP4DV', 42, 21, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
+(53, 'b9UP4DV', 42, 39, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
+(54, 'b9UP4DV', 42, 30, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
+(55, 'b9UP4DV', 42, 35, 1, '現金', '7-11', '2024-07-31 13:23:01', '', 0, 1111111, 255387, '仁安門市', '台北市大安區仁愛路四段27巷1號'),
+(56, 'MTGu3Pp', 42, 46, 1, '現金', '7-11', '2024-07-31 13:25:03', '', 0, 1111111, 239156, '迪化門市', '台北市大同區民生西路343號345號'),
+(57, 'WZg9w1b', 42, 2, 1, '現金', '7-11', '2024-07-31 15:26:12', '', 0, 1111111, 118899, '掬華門市', '台北市中正區中華路二段405號407號'),
+(58, 'PE2DVCo', 42, 2, 1, '現金', '7-11', '2024-07-31 15:26:12', '', 0, 1111111, 118899, '掬華門市', '台北市中正區中華路二段405號407號'),
+(59, 'IXQdOXR', 42, 3, 1, '現金', '7-11', '2024-07-31 15:26:38', '', 0, 1111111, 126616, '立行門市', '新北市三重區力行路二段158號160號'),
+(60, 'g634lqv', 42, 2, 2, '現金', '7-11', '2024-07-31 16:40:49', '', 0, 1111111, 240226, '仟發門市', '台北市大同區民生西路95號97號'),
+(61, 'u71bFJw', 42, 1, 1, '現金', '7-11', '2024-07-31 16:41:42', '', 0, 1111111, 249957, '智成門市', '新北市三芝區中正路二段1號智成街79號');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `ticket`
 --
 
 CREATE TABLE `ticket` (
-  `tid` int NOT NULL,
+  `tid` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `activity_id` int NOT NULL,
   `seat_area` varchar(255) DEFAULT NULL,
   `seat_row` varchar(255) DEFAULT NULL,
@@ -738,7 +564,11 @@ CREATE TABLE `ticket` (
   `transform` varchar(255) DEFAULT NULL,
   `amount` int DEFAULT NULL,
   `order_info` text,
-  `status` varchar(255) DEFAULT NULL
+  `status` varchar(255) DEFAULT NULL,
+  KEY `activity_id` (`activity_id`),
+  KEY `member_id` (`member_id`),
+  CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`actid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -3659,11 +3489,15 @@ INSERT INTO `ticket` (`tid`, `activity_id`, `seat_area`, `seat_row`, `seat_numbe
 --
 
 CREATE TABLE `user_notification` (
-  `id` int NOT NULL,
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `member_id` int DEFAULT NULL,
   `notification_id` int DEFAULT NULL,
   `isread` tinyint(1) NOT NULL DEFAULT '0',
-  `accept_time` datetime DEFAULT NULL
+  `accept_time` datetime DEFAULT NULL,
+  KEY `member_id` (`member_id`),
+  KEY `notification_id` (`notification_id`),
+  CONSTRAINT `user_notification_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `user_notification_ibfk_2` FOREIGN KEY (`notification_id`) REFERENCES `notification` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -3682,223 +3516,203 @@ INSERT INTO `user_notification` (`id`, `member_id`, `notification_id`, `isread`,
 -- 已傾印資料表的索引
 --
 
---
--- 資料表索引 `aclass`
---
-ALTER TABLE `aclass`
-  ADD PRIMARY KEY (`id`);
+-- --------------------------------------------------------
 
 --
--- 資料表索引 `activity`
---
-ALTER TABLE `activity`
-  ADD PRIMARY KEY (`actid`),
-  ADD KEY `activity_class` (`class`),
-  ADD KEY `artist_id` (`artist_id`);
-
---
--- 資料表索引 `artist`
---
-ALTER TABLE `artist`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `event_artists`
---
-ALTER TABLE `event_artists`
-  ADD PRIMARY KEY (`eaid`),
-  ADD KEY `artist_id` (`artist_id`),
-  ADD KEY `event_id` (`event_id`);
-
---
--- 資料表索引 `favorite`
---
-ALTER TABLE `favorite`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `member_id` (`member_id`),
-  ADD KEY `item_id` (`item_id`);
-
---
--- 資料表索引 `markets`
---
-ALTER TABLE `markets`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `member`
---
-ALTER TABLE `member`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `nclass`
---
-ALTER TABLE `nclass`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `notification`
---
-ALTER TABLE `notification`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `noti_class` (`noti_class`);
-
---
--- 資料表索引 `order_detail`
---
-ALTER TABLE `order_detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `member_id` (`member_id`);
-
---
--- 資料表索引 `otp`
---
-ALTER TABLE `otp`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
-
---
--- 資料表索引 `ticket`
---
-ALTER TABLE `ticket`
-  ADD PRIMARY KEY (`tid`),
-  ADD KEY `member_id` (`member_id`),
-  ADD KEY `activity_id` (`activity_id`);
-
---
--- 資料表索引 `user_notification`
---
-ALTER TABLE `user_notification`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `member_id` (`member_id`),
-  ADD KEY `user_notification_ibfk_2` (`notification_id`);
-
---
--- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+-- 資料表結構 `favorite`
 --
 
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `aclass`
---
-ALTER TABLE `aclass`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+CREATE TABLE `favorite` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `member_id` int NOT NULL,
+  `item_id` int DEFAULT NULL,
+  KEY `member_id` (`member_id`),
+  KEY `item_id` (`item_id`),
+  CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `favorite_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `activity` (`actid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `activity`
---
-ALTER TABLE `activity`
-  MODIFY `actid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `artist`
---
-ALTER TABLE `artist`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `event_artists`
---
-ALTER TABLE `event_artists`
-  MODIFY `eaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `favorite`
---
-ALTER TABLE `favorite`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `markets`
---
-ALTER TABLE `markets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `member`
---
-ALTER TABLE `member`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `nclass`
---
-ALTER TABLE `nclass`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `notification`
---
-ALTER TABLE `notification`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `order_detail`
---
-ALTER TABLE `order_detail`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `otp`
---
-ALTER TABLE `otp`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `product`
---
-ALTER TABLE `product`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
-
---
--- 使用資料表自動遞增(AUTO_INCREMENT) `ticket`
---
-ALTER TABLE `ticket`
-  MODIFY `tid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2899;
-
---
--- 已傾印資料表的限制式
+-- 傾印資料表的資料 `favorite`
 --
 
---
--- 資料表的限制式 `event_artists`
---
-ALTER TABLE `event_artists`
-  ADD CONSTRAINT `event_artists_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`),
-  ADD CONSTRAINT `event_artists_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `activity` (`actid`);
+INSERT INTO `favorite` (`id`, `member_id`, `item_id`) VALUES
+(1, 1, 5),
+(2, 2, 20),
+(3, 5, 2),
+(4, 3, 11),
+(10, 1, 2),
+(11, 1, 9),
+(12, 1, 1),
+(16, 1, 17),
+(40, 64, 2),
+(41, 64, 5),
+(42, 64, 9),
+(52, 42, 17),
+(60, 42, 2),
+(61, 42, 5),
+(62, 42, 9),
+(63, 42, 1),
+(64, 42, 8),
+(65, 42, 7),
+(66, 42, 4),
+(67, 42, 14);
+
+-- --------------------------------------------------------
 
 --
--- 資料表的限制式 `favorite`
+-- 資料表結構 `markets`
 --
-ALTER TABLE `favorite`
-  ADD CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
-  ADD CONSTRAINT `favorite_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `activity` (`actid`);
+
+CREATE TABLE `markets` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `market_name` varchar(50) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- 資料表的限制式 `notification`
+-- 傾印資料表的資料 `markets`
 --
-ALTER TABLE `notification`
-  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`noti_class`) REFERENCES `nclass` (`id`);
+
+INSERT INTO `markets` (`id`, `market_name`, `address`) VALUES
+(1, '7-11台北小巨蛋', '台北市松山區南京東路四段2號1樓'),
+(2, '7-11台北中崙', '台北市松山區八德路三段27號'),
+(3, '7-11台北民有', '台北市松山區民權東路三段108號'),
+(4, '7-11台北吉祥', '台北市松山區八德路四段245巷52弄31號'),
+(5, '7-11台北京城', '台北市松山區南京東路四段75之2號1樓'),
+(6, '7-11台北京復', '台北市松山區光復北路11巷44號'),
+(7, '7-11台北延壽', '台北市松山區延壽街422號'),
+(8, '7-11台北東吉', '台北市松山區民生東路五段100號'),
+(9, '7-11台北中興', '台北市信義區基隆路二段22號'),
+(10, '7-11台北世貿', '台北市信義區信義路五段5號1樓'),
+(11, '7-11台北北府', '台北市信義區松仁路162號164號1樓'),
+(12, '7-11台北北醫', '台北市信義區吳興街252號'),
+(13, '7-11台北松山', '台北市信義區忠孝東路五段386號'),
+(14, '7-11台北松高', '台北市信義區基隆路一段141號1樓'),
+(15, '7-11台北松智', '台北市信義區莊敬路325巷43號'),
+(16, '7-11台北大安復興', '台北市大安區復興南路一段247號'),
+(17, '7-11台北永康', '台北市大安區永康街43號'),
+(18, '7-11台北合維', '台北市大安區四維路170巷8號1樓'),
+(19, '7-11台北八德', '台北市中正區臨沂街1號1樓'),
+(20, '7-11台北中正許昌', '台北市中正區許昌街26號1樓'),
+(21, '7-11新北台藝大', '新北市板橋區大觀路一段59號'),
+(22, '7-11新北府中', '新北市板橋區府中路82號84號1樓'),
+(23, '7-11新北三洋', '新北市新莊區中正路677號679號'),
+(24, '7-11新北加州', '新北市新莊區中平路81巷2號'),
+(25, '7-11新北宏福', '新北市新莊區公園一路34號36號1樓'),
+(26, '7-11新北花旗', '新北市新莊區中港路132巷26號'),
+(27, '7-11新北副都心', '新北市新莊區中央路287號289號1樓'),
+(28, '7-11新北捷仕堡', '新北市新莊區龍安路15號'),
+(29, '7-11新北莊和', '新北市新莊區中和街34.36號'),
+(30, '7-11新北傑出', '新北市新莊區昌平街61號63號1樓');
+
+-- --------------------------------------------------------
 
 --
--- 資料表的限制式 `order_detail`
+-- 資料表結構 `aclass`
 --
-ALTER TABLE `order_detail`
-  ADD CONSTRAINT `order_detail_ibfk_3` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `order_detail_ibfk_4` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
+
+CREATE TABLE `aclass` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `class` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- 資料表的限制式 `ticket`
+-- 傾印資料表的資料 `aclass`
 --
-ALTER TABLE `ticket`
-  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`actid`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
+
+INSERT INTO `aclass` (`id`, `class`) VALUES
+(1, 'concert'),
+(2, 'music festival');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `categories`
+--
+
+CREATE TABLE `categories` (
+  `sid` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `parent_sid` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 傾印資料表的資料 `categories`
+--
+
+INSERT INTO `categories` (`sid`, `name`, `parent_sid`) VALUES
+(1, '程式設計', 0),
+(2, '繪圖軟體', 0),
+(3, '網際網路應用', 0),
+(4, 'PHP', 1),
+(5, 'JavaScript', 1),
+(6, 'PS', 2),
+(7, 'Chrome', 3),
+(8, '騙錢的', 3),
+(9, 'C++', 1),
+(10, '椅拉', 2),
+(11, '程式設計', 0),
+(12, '繪圖軟體', 0),
+(13, '網際網路應用', 0),
+(14, 'PHP', 1),
+(15, 'JavaScript', 1),
+(16, 'PS', 2),
+(17, 'Chrome', 3),
+(18, '騙錢的', 3),
+(19, 'C++', 1),
+(20, '椅拉', 2);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `from_csv_01`
+--
+
+CREATE TABLE `from_csv_01` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `age` int NOT NULL,
+  `address` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 傾印資料表的資料 `from_csv_01`
+--
+
+INSERT INTO `from_csv_01` (`id`,`name`, `age`, `address`) VALUES
+(1,'李小明', 25, '台北市'),
+(2,'陳小華', 28, '高雄市'),
+(3,'吳大同', 24, '宜蘭縣'),
+(4,'李小明', 25, '台北市'),
+(5,'陳小華', 28, '高雄市'),
+(6,'吳大同', 24, '宜蘭縣');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `otp`
+--
+
+CREATE TABLE `otp` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `exp_timestamp` bigint NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 傾印資料表的資料 `otp`
+--
+
+INSERT INTO `otp` (`id`, `user_id`, `email`, `token`, `exp_timestamp`, `created_at`, `updated_at`) VALUES
+(1, 45, 'test0716@@grr.la', '697517', 1721203793672, '2024-07-17 15:39:53', '2024-07-17 15:39:53'),
+(7, 68, 'iamjin910501@gmail.com', '059913', 1722415295232, '2024-07-31 16:11:35', '2024-07-31 16:11:35');
+
+-- --------------------------------------------------------
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
