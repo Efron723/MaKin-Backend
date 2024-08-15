@@ -21,6 +21,6 @@ export default async function (sequelize) {
       underscored: true, // 所有自動建立欄位，使用snake_case命名
       // createdAt: 'created_at', // 建立的時間戳
       // updatedAt: 'updated_at', // 更新的時間戳
-    },
+    }
   )
 }

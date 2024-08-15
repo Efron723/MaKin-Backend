@@ -26,7 +26,7 @@ export default async function (sequelize) {
         allowNull: true,
         references: {
           model: 'nclass',
-          key: 'id'
+          key: 'id',
         },
         // onUpdate: 'CASCADE',
         // onDelete: 'SET NULL',
