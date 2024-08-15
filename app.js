@@ -16,9 +16,8 @@ const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 const redirect_uri = 'https://makin-backend.vercel.app/callback'
 
-// 使用檔案的session store，存在sessions資料夾
-import sessionFileStore from 'session-file-store'
-const FileStore = sessionFileStore(session)
+// 使用內建的 MemoryStore
+const MemoryStore = session.MemoryStore
 
 // 修正 ESM 中的 __dirname 與 windows os 中的 ESM dynamic import
 import { fileURLToPath, pathToFileURL } from 'url'
@@ -56,18 +55,16 @@ app.use(cookieParser())
 // 在 public 的目錄，提供影像、CSS 等靜態檔案
 app.use(express.static(path.join(__dirname, 'public')))
 
-// fileStore的選項 session-cookie使用
-const fileStoreOptions = { logFn: function () {} }
+// 使用 MemoryStore 來記錄 session
 app.use(
   session({
-    store: new FileStore(fileStoreOptions), // 使用檔案記錄session
-    name: 'SESSION_ID', // cookie名稱，儲存在瀏覽器裡
-    secret: '67f71af4602195de2450faeb6f8856c0', // 安全字串，應用一個高安全字串
+    store: new MemoryStore(), // 使用內建 MemoryStore
+    name: 'SESSION_ID',
+    secret: '67f71af4602195de2450faeb6f8856c0',
     cookie: {
-      maxAge: 30 * 86400000, // 30 * (24 * 60 * 60 * 1000) = 30 * 86400000 => session保存30天
-      // 以下三行新加，若其他人有被擋掉東西可刪。
+      maxAge: 30 * 86400000, // 30 天
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // 在生產環境中使用 HTTPS
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
     },
     resave: false,
@@ -114,22 +111,13 @@ app.get('/callback', async (req, res) => {
     // 重定向到前端的一個特定頁面，並附帶 token
     res.redirect(
       `https://makin-sound.vercel.app/auth/callback#access_token=${access_token}&refresh_token=${refresh_token}`
-      // `http://localhost:3000/success?access_token=${access_token}&refresh_token=${refresh_token}`
-      // `/success?access_token=${access_token}&refresh_token=${refresh_token}`
     )
   } catch (error) {
     res.send(error)
   }
 })
 
-// app.get('/success', (req, res) => {
-//   const { access_token, refresh_token } = req.query
-//   res.send({ access_token, refresh_token })
-// })
-
-// spotify end
-
-// 載入routes中的各路由檔案，並套用api路由 START
+// 載入 routes 中的各路由檔案，並套用 api 路由 START
 const apiPath = '/api' // 預設路由
 const routePath = path.join(__dirname, 'routes')
 const filenames = await fs.promises.readdir(routePath)
@@ -139,9 +127,9 @@ for (const filename of filenames) {
   const slug = filename.split('.')[0]
   app.use(`${apiPath}/${slug === 'index' ? '' : slug}`, item.default)
 }
-// 載入routes中的各路由檔案，並套用api路由 END
+// 載入 routes 中的各路由檔案，並套用 api 路由 END
 
-// 捕抓404錯誤處理
+// 捕抓 404 錯誤處理
 app.use(function (req, res, next) {
   next(createError(404))
 })
@@ -154,7 +142,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500)
-  // 更改為錯誤訊息預設為JSON格式
+  // 更改為錯誤訊息預設為 JSON 格式
   res.status(500).send({ error: err })
 })
 
