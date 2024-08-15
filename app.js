@@ -158,8 +158,4 @@ app.use(function (err, req, res, next) {
   res.status(500).send({ error: err })
 })
 
-// app.listen(3005, () => {
-//   console.log('Server is running on port 3005')
-// })
-
 export default app
