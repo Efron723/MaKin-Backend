@@ -6,6 +6,7 @@ import express from 'express'
 import logger from 'morgan'
 import path from 'path'
 import session from 'express-session'
+import MemoryStore from 'session-memory-store' // 引入 session-memory-store
 
 // for spotify
 import axios from 'axios'
@@ -15,10 +16,6 @@ import querystring from 'querystring'
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 const redirect_uri = 'https://makin-backend.vercel.app/callback'
-
-// 使用檔案的session store，存在sessions資料夾
-import sessionFileStore from 'session-file-store'
-const FileStore = sessionFileStore(session)
 
 // 修正 ESM 中的 __dirname 與 windows os 中的 ESM dynamic import
 import { fileURLToPath, pathToFileURL } from 'url'
@@ -56,16 +53,14 @@ app.use(cookieParser())
 // 在 public 的目錄，提供影像、CSS 等靜態檔案
 app.use(express.static(path.join(__dirname, 'public')))
 
-// fileStore的選項 session-cookie使用
-const fileStoreOptions = { logFn: function () {} }
+// 使用 session-memory-store
 app.use(
   session({
-    store: new FileStore(fileStoreOptions), // 使用檔案記錄session
+    store: new MemoryStore(), // 使用 MemoryStore
     name: 'SESSION_ID', // cookie名稱，儲存在瀏覽器裡
-    secret: '67f71af4602195de2450faeb6f8856c0', // 安全字串，應用一個高安全字串
+    secret: process.env.SESSION_SECRET || 'default_secret', // 安全字串，應用一個高安全字串
     cookie: {
       maxAge: 30 * 86400000, // 30 * (24 * 60 * 60 * 1000) = 30 * 86400000 => session保存30天
-      // 以下三行新加，若其他人有被擋掉東西可刪。
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // 在生產環境中使用 HTTPS
       sameSite: 'lax',
