@@ -64,9 +64,13 @@ router.post('/', async function (req, res, next) {
 })
 
 // 登出
-router.post('/logout', async function (req, res, next) {
-  // 清除瀏覽器對應cookie
-  res.clearCookie('accessToken', { httpOnly: true })
+router.post('/logout', authenticate, (req, res) => {
+  // 確保清除cookie的設置與設置時一致
+  res.clearCookie('accessToken', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  })
   res.json({ status: 'success', data: null })
 })
 

@@ -105,8 +105,12 @@ router.post('/', async (req, res) => {
 })
 
 router.post('/logout', authenticate, (req, res) => {
-  // 清除cookie
-  res.clearCookie('accessToken', { httpOnly: true })
+  // 確保清除cookie的設置與設置時一致
+  res.clearCookie('accessToken', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  })
   res.json({ status: 'success', data: null })
 })
 
