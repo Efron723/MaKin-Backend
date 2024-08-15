@@ -9,7 +9,7 @@ import 'dotenv/config.js'
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '8080') // 使用預設值 10000 作為本地開發的端口
+const port = normalizePort(process.env.PORT || '3005')
 app.set('port', port)
 
 /**

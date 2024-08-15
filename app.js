@@ -11,13 +11,10 @@ import session from 'express-session'
 import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
-import 'dotenv/config.js'
-import fetch from 'node-fetch'
-import { Buffer } from 'buffer'
 import querystring from 'querystring'
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
-const redirect_uri = 'http://localhost:3005/callback'
+const redirect_uri = 'https://makin-backend.onrender.com/callback'
 
 // 使用檔案的session store，存在sessions資料夾
 import sessionFileStore from 'session-file-store'
@@ -39,11 +36,7 @@ const app = express()
 // cors設定，參數為必要，注意不要只寫`app.use(cors())`
 app.use(
   cors({
-    origin: [
-      'http://localhost:3000',
-      'https://localhost:9000',
-      'https://accounts.spotify.com',
-    ],
+    origin: ['https://makin-sound.vercel.app', 'https://accounts.spotify.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
@@ -120,7 +113,7 @@ app.get('/callback', async (req, res) => {
     const { access_token, refresh_token } = response.data
     // 重定向到前端的一個特定頁面，並附帶 token
     res.redirect(
-      `http://localhost:3000/auth/callback#access_token=${access_token}&refresh_token=${refresh_token}`
+      `https://makin-sound.vercel.app/auth/callback#access_token=${access_token}&refresh_token=${refresh_token}`
       // `http://localhost:3000/success?access_token=${access_token}&refresh_token=${refresh_token}`
       // `/success?access_token=${access_token}&refresh_token=${refresh_token}`
     )
