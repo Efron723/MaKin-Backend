@@ -14,7 +14,7 @@ dotenv.config()
 import querystring from 'querystring'
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
-const redirect_uri = 'https://makin-backend.onrender.com/callback'
+const redirect_uri = 'https://makin-backend.vercel.app/callback'
 
 // 使用檔案的session store，存在sessions資料夾
 import sessionFileStore from 'session-file-store'
