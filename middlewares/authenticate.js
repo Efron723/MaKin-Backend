@@ -8,6 +8,8 @@ const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 
 // 中介軟體middleware，用於檢查授權(authenticate)
 export default function authenticate(req, res, next) {
+  console.log(req.cookies)
+
   // const token = req.headers['authorization']
   const token = req.cookies.accessToken
 
