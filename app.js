@@ -6,32 +6,34 @@ import express from 'express'
 import logger from 'morgan'
 import path from 'path'
 import session from 'express-session'
-import sessionMemoryStore from 'session-memory-store' // 使用 session-memory-store 模組
+
+// for spotify
 import axios from 'axios'
 import dotenv from 'dotenv'
-import querystring from 'querystring'
-import { fileURLToPath, pathToFileURL } from 'url'
-
-// 配置 dotenv
 dotenv.config()
-
+import querystring from 'querystring'
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 const redirect_uri = 'https://makin-backend.vercel.app/callback'
 
-// 修正 ESM 中的 __dirname
+// 使用 session-memory-store
+import sessionMemoryStore from 'session-memory-store'
+const MemoryStore = sessionMemoryStore(session)
+
+// 修正 ESM 中的 __dirname 與 windows os 中的 ESM dynamic import
+import { fileURLToPath, pathToFileURL } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// 讓 console.log 呈現檔案與行號
+// 讓 console.log 呈現檔案與行號，與字串訊息呈現顏色用
 import { extendLog } from '#utils/tool.js'
 import 'colors'
 extendLog()
 
-// 創建 Express 應用程式
+// 建立 Express 應用程式
 const app = express()
 
-// CORS 設定
+// cors 設定
 app.use(
   cors({
     origin: ['https://makin-sound.vercel.app', 'https://accounts.spotify.com'],
@@ -40,31 +42,30 @@ app.use(
   })
 )
 
-// 設定視圖引擎
+// 視圖引擎設定
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-// 記錄 HTTP 請求
+// 記錄 HTTP 要求
 app.use(logger('dev'))
-// 解析 POST 與 PUT 請求的 JSON 格式資料
+// 剖析 POST 與 PUT 要求的 JSON 格式資料
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-// 解析 Cookie 標頭
+// 剖析 Cookie 標頭與增加至 req.cookies
 app.use(cookieParser())
-// 提供靜態檔案
+// 在 public 的目錄，提供影像、CSS 等靜態檔案
 app.use(express.static(path.join(__dirname, 'public')))
 
 // 使用 session-memory-store
-const MemoryStore = sessionMemoryStore(session)
 app.use(
   session({
     store: new MemoryStore(), // 使用 MemoryStore
-    name: 'SESSION_ID',
-    secret: process.env.SESSION_SECRET || 'default_secret',
+    name: 'SESSION_ID', // cookie 名稱，儲存在瀏覽器裡
+    secret: process.env.SESSION_SECRET || 'default_secret', // 安全字串，應用一個高安全字串
     cookie: {
-      maxAge: 30 * 86400000,
+      maxAge: 30 * 86400000, // 30 * (24 * 60 * 60 * 1000) = 30 * 86400000 => session 保存 30 天
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'production', // 在生產環境中使用 HTTPS
       sameSite: 'lax',
     },
     resave: false,
@@ -108,6 +109,7 @@ app.get('/callback', async (req, res) => {
     )
 
     const { access_token, refresh_token } = response.data
+    // 重定向到前端的一個特定頁面，並附帶 token
     res.redirect(
       `https://makin-sound.vercel.app/auth/callback#access_token=${access_token}&refresh_token=${refresh_token}`
     )
