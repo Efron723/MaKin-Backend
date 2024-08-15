@@ -15,6 +15,5 @@
       "src": "/(.*)",
       "dest": "/bin/www.js"
     }
-  ],
-  "includeFiles": ["models/**"]
+  ]
 }

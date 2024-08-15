@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "private": true,
   "scripts": {
+    "build": "cp -r models/ dist/models/",
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
     "seed": "node ./cli/db-init.js",
