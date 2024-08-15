@@ -53,7 +53,11 @@ router.post('/', async function (req, res, next) {
   })
 
   // 在瀏覽器端使用httpOnly cookie儲存accessToken
-  res.cookie('accessToken', accessToken, { httpOnly: true })
+  res.cookie('accessToken', accessToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  })
 
   // 回應accessToken到前端(讓react可以儲在狀態中)
   return res.json({ status: 'success', data: { accessToken } })
