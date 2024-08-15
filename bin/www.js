@@ -2,7 +2,6 @@ import app from '../app.js'
 import debugLib from 'debug'
 import http from 'http'
 const debug = debugLib('node-express-es6:server')
-import { exit } from 'node:process'
 
 // 導入 dotenv 使用 .env 檔案中的設定值 process.env
 import 'dotenv/config.js'
@@ -60,12 +59,10 @@ function onError(error) {
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges')
-      exit(1)
-      break
+      throw new Error(bind + ' requires elevated privileges')
     case 'EADDRINUSE':
       console.error(bind + ' is already in use')
-      exit(1)
-      break
+      throw new Error(bind + ' is already in use')
     default:
       throw error
   }
