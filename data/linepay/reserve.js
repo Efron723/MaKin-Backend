@@ -21,7 +21,7 @@ let options = {
     },
   ],
   redirectUrls: {
-    confirmUrl: 'http://localhost:3000/pay-confirm',
-    cancelUrl: 'http://localhost:3000/pay-cancel',
+    confirmUrl: 'https://makin-sound.vercel.app/pay-confirm',
+    cancelUrl: 'https://makin-sound.vercel.app/pay-cancel',
   },
 }
