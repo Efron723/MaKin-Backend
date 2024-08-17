@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import * as fs from 'fs'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
@@ -9,8 +11,6 @@ import session from 'express-session'
 
 // for spotify
 import axios from 'axios'
-import dotenv from 'dotenv'
-dotenv.config()
 import querystring from 'querystring'
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
@@ -58,14 +58,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 // 使用 MemoryStore 來記錄 session
 app.use(
   session({
-    store: new MemoryStore(), // 使用內建 MemoryStore
+    store: new MemoryStore({ checkPeriod: 86400000 }),
     name: 'SESSION_ID',
-    secret: '67f71af4602195de2450faeb6f8856c0',
+    secret: process.env.SESSION_SECRET,
     cookie: {
       maxAge: 30 * 86400000, // 30 天
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'None',
     },
     resave: false,
     saveUninitialized: false,

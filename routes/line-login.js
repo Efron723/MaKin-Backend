@@ -1,3 +1,5 @@
+// 存取`.env`設定檔案使用
+import 'dotenv/config.js'
 import express from 'express'
 const router = express.Router()
 
@@ -8,9 +10,6 @@ const { User } = sequelize.models
 
 // line-login模組
 import line_login from '#services/line-login.js'
-
-// 存取`.env`設定檔案使用
-import 'dotenv/config.js'
 
 // 定義安全的私鑰字串
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
@@ -145,6 +144,7 @@ router.get(
         httpOnly: true,
         secure: true,
         sameSite: 'None',
+        path: '/',
       })
 
       // 傳送access token回應(react可以儲存在state中使用)

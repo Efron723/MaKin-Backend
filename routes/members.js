@@ -1,3 +1,5 @@
+// 存取.env檔案
+import 'dotenv/config.js'
 import express from 'express'
 const router = express.Router()
 
@@ -13,8 +15,6 @@ import jsonwebtoken from 'jsonwebtoken'
 // 中介軟體，存取私有的會員資料用，會員在授權期內可以用JWT查出資料
 import authenticate from '##/middlewares/authenticate.js'
 
-// 存取.env檔案
-import 'dotenv/config.js'
 // 定義安全私鑰字串
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 
@@ -57,6 +57,7 @@ router.post('/', async function (req, res, next) {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
+    path: '/',
   })
 
   // 回應accessToken到前端(讓react可以儲在狀態中)

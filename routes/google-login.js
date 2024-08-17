@@ -1,3 +1,5 @@
+// 存取`.env`設定檔案使用
+import 'dotenv/config.js'
 import express from 'express'
 const router = express.Router()
 
@@ -5,8 +7,6 @@ import sequelize from '#configs/db.js'
 const { Member } = sequelize.models
 
 import jsonwebtoken from 'jsonwebtoken'
-// 存取`.env`設定檔案使用
-import 'dotenv/config.js'
 
 // 定義安全的私鑰字串
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
@@ -91,6 +91,7 @@ router.post('/', async function (req, res, next) {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
+    path: '/',
   })
 
   // 傳送access token回應(react可以儲存在state中使用)

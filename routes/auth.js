@@ -1,12 +1,11 @@
+// 存取`.env`設定檔案使用
+import 'dotenv/config.js'
 import express from 'express'
 const router = express.Router()
 
 import jsonwebtoken from 'jsonwebtoken'
 // 中介軟體，存取隱私會員資料用
 import authenticate from '#middlewares/authenticate.js'
-
-// 存取`.env`設定檔案使用
-import 'dotenv/config.js'
 
 // 資料庫使用
 import { QueryTypes } from 'sequelize'
@@ -95,6 +94,7 @@ router.post('/', async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
+    path: '/',
   })
 
   // 傳送access token回應(例如react可以儲存在state中使用)
