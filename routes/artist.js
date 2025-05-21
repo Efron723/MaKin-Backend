@@ -74,7 +74,7 @@ router.get('/:artid', async (req, res) => {
   FROM \`activity\` as e
   JOIN \`event_artists\` as ea ON e.actid = ea.event_id 
   JOIN \`artist\` as a ON ea.artist_id = a.id 
-  WHERE a.spotify_id="${artid}" 
+  WHERE a.spotify_id=${artid} 
   ORDER BY e.actdate 
   ASC`
   const [rows2] = await db.query(t_sql)
