@@ -1,16 +1,14 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+  background-color: black;
 }
 
 .centered-black-bg {
   background-color: black;
   color: white;
-  min-height: 100vh;
+  height: 100vh; /* 改成固定高度 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,19 +18,21 @@ a {
   font-family: Arial, sans-serif;
 }
 
-/* 文字放大 + 漸變動畫 */
-
 .hover-animate {
   display: inline-block;
   transition: transform 0.3s ease;
   background: linear-gradient(
-    135deg, /* 從左下到右上 */
+    135deg,
     red, orange, yellow, green, blue, indigo, violet
   );
   background-size: 400% 400%;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
   animation: rainbowShift 5s linear infinite;
+  animation-play-state: paused;
+  cursor: pointer;
 }
 
 .hover-animate:hover {
@@ -40,12 +40,6 @@ a {
   animation-play-state: running;
 }
 
-/* 預設不播放動畫，只有 hover 才動畫 */
-.hover-animate {
-  animation-play-state: paused;
-}
-
-/* 漸變色位移動畫 */
 @keyframes rainbowShift {
   0% {
     background-position: 0% 100%;
@@ -54,4 +48,3 @@ a {
     background-position: 100% 0%;
   }
 }
-
