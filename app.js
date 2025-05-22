@@ -120,6 +120,10 @@ app.get('/callback', async (req, res) => {
   }
 })
 
+// 這裡是首頁的路由
+import indexRouter from './routes/index.js'
+app.use('/', indexRouter)
+
 // 載入 routes 中的各路由檔案，並套用 api 路由 START
 const apiPath = '/api' // 預設路由
 const routePath = path.join(__dirname, 'routes')
