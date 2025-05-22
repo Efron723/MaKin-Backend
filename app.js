@@ -1,5 +1,4 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import 'dotenv/config.js'
 import * as fs from 'fs'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
