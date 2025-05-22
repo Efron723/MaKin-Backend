@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 // import Aclass from './Aclass.js';
 
-export default async function (sequelize) {
+export default function (sequelize) {
   // const Aclass = sequelize.models.aclass || await import('./Aclass.js').then(m => m.default(sequelize));
   return sequelize.define(
     'Activity',

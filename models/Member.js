@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize'
 import { generateHash } from '#db-helpers/password-hash.js'
 
-export default async function (sequelize) {
+export default function (sequelize) {
   return sequelize.define(
     'Member',
     {
