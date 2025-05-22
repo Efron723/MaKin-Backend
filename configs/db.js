@@ -1,11 +1,9 @@
+import 'mysql2'
 import { Sequelize } from 'sequelize'
-
-// 讀取.env檔用
+import colors from 'colors'
 import 'dotenv/config.js'
-
 import applyModels from '#db-helpers/sequelize/models-setup.js'
 
-// 資料庫連結資訊
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USERNAME,
@@ -24,27 +22,25 @@ const sequelize = new Sequelize(
   }
 )
 
-// 啟動時測試連線
-sequelize
+const ready = sequelize
   .authenticate()
   .then(() => {
-    console.log('INFO - 資料庫已連線 Database connected.'.bgGreen)
+    console.log(colors.bgGreen('INFO - 資料庫已連線 Database connected.'))
+    return applyModels(sequelize)
+  })
+  .then(() => {
+    console.log(
+      colors.bgGreen('INFO - 所有模型已載入完成(如果表不存在建立該表)')
+    )
   })
   .catch((error) => {
     console.log(
-      'ERROR - 無法連線至資料庫 Unable to connect to the database.'.bgRed
+      colors.bgRed(
+        'ERROR - 無法連線至資料庫 Unable to connect to the database.'
+      )
     )
     console.error(error)
   })
 
-// 載入models中的各檔案
-await applyModels(sequelize)
-await sequelize.sync({})
-
-console.log(
-  'INFO - 所有模型已載入完成(如果表不存在建立該表) All models were synchronized successfully.'
-    .bgGreen
-)
-
-// 輸出模組
 export default sequelize
+export { ready }

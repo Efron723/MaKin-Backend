@@ -28,6 +28,10 @@ import { extendLog } from '#utils/tool.js'
 import 'colors'
 extendLog()
 
+// 等待 DB 準備好
+import { ready as dbReady } from './configs/db.js'
+await dbReady
+
 // 建立 Express 應用程式
 const app = express()
 
