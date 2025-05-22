@@ -56,7 +56,9 @@ app.use(express.urlencoded({ extended: false }))
 // 剖折 Cookie 標頭與增加至 req.cookies
 app.use(cookieParser())
 // 在 public 的目錄，提供影像、CSS 等靜態檔案
-app.use(express.static(path.join(__dirname, 'public')))
+if (process.env.NODE_ENV !== 'production') {
+  app.use(express.static(path.join(__dirname, 'public')))
+}
 
 // 使用 MemoryStore 來記錄 session
 app.use(
