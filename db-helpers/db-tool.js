@@ -13,7 +13,8 @@ export const getOrder = (orderby = 'id,asc') => {
   const column = orderby.split(',')[0]
   const keyword = orderby.split(',')[1]
 
-  if (!column || !keyword) return ''
+  if (!column || !keyword || !['asc', 'desc'].includes(keyword.toLowerCase()))
+    return ''
 
   return `ORDER BY ${column} ${keyword}`
 }
@@ -42,7 +43,7 @@ export const getFindInSet = (value, dbColumn, isNumber = true) => {
 
   return value
     .split(',')
-    .map((v) => `FIND_IN_SET(${isNumber ? Number(v) : v}, ${dbColumn})`)
+    .map((v) => `FIND_IN_SET(${isNumber ? Number(v) : `'${v}'`}, ${dbColumn})`)
     .join(' OR ')
 }
 

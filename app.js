@@ -24,7 +24,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // 讓console.log呈現檔案與行號，與字串訊息呈現顏色用
-import { extendLog } from '#utils/tool.js'
+import { extendLog } from './utils/tool.js'
 import 'colors'
 extendLog()
 

@@ -2,7 +2,7 @@ import 'mysql2'
 import { Sequelize } from 'sequelize'
 import colors from 'colors'
 import 'dotenv/config.js'
-import applyModels from '#db-helpers/sequelize/models-setup.js'
+import applyModels from '../db-helpers/sequelize/models-setup.js'
 
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
