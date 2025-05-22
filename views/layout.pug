@@ -3,5 +3,56 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    style.
+      body {
+        margin: 0;
+        padding: 0;
+        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+        background-color: black;
+      }
+
+      .centered-black-bg {
+        background-color: black;
+        color: white;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      .hover-animate {
+        display: inline-block;
+        transition: transform 0.3s ease;
+        background: linear-gradient(
+          135deg,
+          red, orange, yellow, green, blue, indigo, violet
+        );
+        background-size: 400% 400%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: rainbowShift 5s linear infinite;
+        animation-play-state: paused;
+        cursor: pointer;
+      }
+
+      .hover-animate:hover {
+        transform: scale(1.2);
+        animation-play-state: running;
+      }
+
+      @keyframes rainbowShift {
+        0% {
+          background-position: 0% 100%;
+        }
+        100% {
+          background-position: 100% 0%;
+        }
+      }
   body
     block content
