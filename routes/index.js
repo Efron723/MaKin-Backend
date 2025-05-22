@@ -8,13 +8,13 @@ router.get('/', async (req, res, next) => {
 
   try {
     await ready
-    dbStatus = '✅ 資料庫已成功連線'
+    dbStatus = '🐳 資料庫已成功連線'
   } catch (error) {
-    dbStatus = '❌ 資料庫連線失敗'
+    dbStatus = '👻 資料庫連線失敗'
   }
 
   res.render('index', {
-    title: '首頁',
+    title: 'Backend API',
     dbStatus, // 傳給模板
   })
 })
