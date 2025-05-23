@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/avatar/(.*)",
-      "dest": "/public/avatar/$1"
+      "dest": "/avatar/$1"
     },
     {
       "src": "/api/ticket/Activity/(.*)",
