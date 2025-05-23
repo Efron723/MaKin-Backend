@@ -82,19 +82,27 @@ router.post(
   authenticate,
   upload.single('avatar'),
   async function (req, res) {
-    if (req.file) {
+    try {
+      if (!req.file) {
+        return res
+          .status(400)
+          .json({ status: 'fail', message: 'No file uploaded' })
+      }
+
       const id = req.user.id
       const data = { avatar: req.file.path }
       const [affectedRows] = await Member.update(data, { where: { id } })
       if (!affectedRows) {
-        return res.json({
+        return res.status(400).json({
           status: 'error',
           message: '更新失敗或沒有資料被更新',
         })
       }
+
       return res.json({ status: 'success', data: { avatar: req.file.path } })
-    } else {
-      return res.json({ status: 'fail', data: null })
+    } catch (error) {
+      console.error('Upload avatar error:', error)
+      return res.status(500).json({ status: 'error', message: error.message })
     }
   }
 )
