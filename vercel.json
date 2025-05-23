@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/avatar/(.*)",
+      "dest": "/public/avatar/$1"
+    },
+    {
       "src": "/api/ticket/Activity/(.*)",
       "dest": "/api/index.js"
     },
